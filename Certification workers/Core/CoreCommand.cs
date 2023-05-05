@@ -10,11 +10,13 @@ namespace Certification_workers.Core
     public class CoreCommand : ICommand
     {
         Action action;
+
+        public event EventHandler? CanExecuteChanged;
+
         public CoreCommand(Action action)
         {
             this.action = action;
         }
-        public event EventHandler? CanExecuteChanged;
 
         public bool CanExecute(object? parameter)
         {

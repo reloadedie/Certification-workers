@@ -1,0 +1,62 @@
+﻿<Page x:Class="Certification_workers.Views.InfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Certification_workers.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="InfoPage">
+
+    <Border Style="{StaticResource InfoPageBorderTheme}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Связаться с разработчиком"
+                       Style="{StaticResource LabelUsStyle}"
+                       FontSize="36"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Margin="20 0 10 0">
+                    <Label Content="Рабочая почта"
+                               Style="{StaticResource LabelUsStyle}"
+                               FontSize="24"
+                               Margin="5"/>
+                    <TextBox Text="reloadedie@mail.ru" IsReadOnly="True"
+                                 Margin="5"
+                                 FontSize="18"
+                                 Width="200"
+                                 HorizontalAlignment="Left"
+                                 Height="26"/>
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="2"
+                        Width="180"
+                        Height="50"
+                        Style="{StaticResource BorderCorner1Button}"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Bottom"
+                        Background="LightBlue"
+                        Margin="0 0 0 10">
+                <Border Style="{StaticResource BorderCorner2Button}">
+                    <Button Content="О программе"
+                                Command="{Binding OpenInfoWindow}"
+                                Style="{StaticResource TransparentStyleButtonIn2CornerBorders}">
+
+                    </Button>
+                </Border>
+            </Border>
+        </Grid>
+    </Border>
+</Page>

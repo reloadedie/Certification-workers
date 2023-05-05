@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Certification_workers.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,20 @@ namespace Certification_workers
     /// </summary>
     public partial class MainWindow : Window
     {
+        static MainWindow window;
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowVM();
+            window = this;
+            DataContext = new MainWindowVM(window);
+
+            MainWindowFrame.Content = new MainPage();
+        }
+
+        public static void MainNavigate(Page page)
+        {
+            window.MainWindowFrame.Navigate(page);
         }
 
         private void ListViewItemMouseEnter(object sender, MouseEventArgs e)
@@ -36,12 +47,20 @@ namespace Certification_workers
                 ToolTipWorkers.Visibility = Visibility.Collapsed;
                 ToolTipSearch.Visibility = Visibility.Collapsed;
                 ToolTipData.Visibility = Visibility.Collapsed;
+                ToolTipInformation.Visibility = Visibility.Collapsed;
+                ToolTipMain.Visibility = Visibility.Collapsed;
+
+                ToolTipSettings.Visibility = Visibility.Collapsed;
             }
             else
             {
                 ToolTipWorkers.Visibility = Visibility.Visible;
                 ToolTipSearch.Visibility = Visibility.Visible;
                 ToolTipData.Visibility = Visibility.Visible;
+                ToolTipInformation.Visibility = Visibility.Visible;
+                ToolTipMain.Visibility = Visibility.Visible;
+
+                ToolTipSettings.Visibility = Visibility.Visible;
             }
 
         }

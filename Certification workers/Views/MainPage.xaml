@@ -5,10 +5,60 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Certification_workers.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="550" d:DesignWidth="800"
       Title="MainPage">
 
-    <Grid>
-        
-    </Grid>
+    <Border Style="{StaticResource MainPageCenterBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Добро пожаловать"
+                       Style="{StaticResource LabelUsStyle}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       FontSize="46"
+                       Margin="0 30 0 0"/>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="1" Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Width="260" Height="60"
+                            Style="{StaticResource BorderCorner1Button}">
+                    <Border Style="{StaticResource BorderCorner2Button}">
+                        <Button Content="" 
+                                Style="{StaticResource TransparentStyleButtonIn2CornerBorders}"/>
+                    </Border>
+                </Border>
+            </Grid>
+
+            <Border Grid.Row="2"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Center"
+                        Width="260" Height="60"
+                        Style="{StaticResource BorderCorner1Button}"
+                        Margin="0 0 0 20">
+                <Border Style="{StaticResource BorderCorner2Button}">
+                    <Button Content="Инструкция к программе" 
+                                Click="Button_ClickOpenWindowInfo" 
+                                Style="{StaticResource TransparentStyleButtonIn2CornerBorders}"/>
+                </Border>
+            </Border>
+        </Grid>
+
+    </Border>
 </Page>

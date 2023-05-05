@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Certification_workers.Core
 {
-    public class BaseNorify : INotifyPropertyChanged
+    public class BaseNotify : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

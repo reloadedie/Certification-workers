@@ -9,13 +9,45 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\MainWindow\Data.png" />
+    <None Remove="Resources\Icons\MainWindow\Info.png" />
+    <None Remove="Resources\Icons\MainWindow\Main.png" />
+    <None Remove="Resources\Icons\MainWindow\MenuButton1.png" />
+    <None Remove="Resources\Icons\MainWindow\Person.png" />
+    <None Remove="Resources\Icons\MainWindow\Search.png" />
+    <None Remove="Resources\Icons\MainWindow\Settings.png" />
     <None Remove="Resources\Icons\MenuButton.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Icons\MainWindow\Data.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\MainWindow\Info.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\MainWindow\Main.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\MainWindow\MenuButton.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Icons\MainWindow\MenuButton1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\MainWindow\Person.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\MainWindow\Search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\MainWindow\Settings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Icons\WorkersPage\" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
-﻿using Certification_workers.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,20 +16,13 @@ using System.Windows.Shapes;
 namespace Certification_workers.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
+    /// Логика взаимодействия для SettingsPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class SettingsPage : Page
     {
-        public MainPage()
+        public SettingsPage()
         {
             InitializeComponent();
-            DataContext = new MainPageVM();
-        }
-
-        private void Button_ClickOpenWindowInfo(object sender, RoutedEventArgs e)
-        {
-            InfoWindow infoWindow = new InfoWindow();
-            infoWindow.Show();
         }
     }
 }

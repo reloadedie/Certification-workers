@@ -9,6 +9,9 @@
       Title="DataPage">
 
     <Grid>
-        <Label Content="DataPage"/>
+        <Label Content="DataPage"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Foreground="White"/>
     </Grid>
 </Page>

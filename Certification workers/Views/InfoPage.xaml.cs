@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace Certification_workers.Views
 {
     /// <summary>
-    /// Логика взаимодействия для StylesPage.xaml
+    /// Логика взаимодействия для InfoPage.xaml
     /// </summary>
-    public partial class StylesPage : Page
+    public partial class InfoPage : Page
     {
-        public StylesPage()
+        public InfoPage()
         {
             InitializeComponent();
-            DataContext = new StylesPageVM();
+            DataContext = new InfoPageVM();
         }
     }
 }

@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Certification_workers"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Background="{x:Null}"
-        Title="MainWindow" Height="850" Width="1000">
+        Title="Аттестация средних медицинских работников" Height="800" Width="1300">
     <Border CornerRadius="15"
             Style="{StaticResource MainWindowBorderTheme}">
         <Grid>
@@ -15,228 +16,278 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
+            <Border Grid.Column="0"
+                    Style="{StaticResource LeftStackPanelBorder}"
+                    CornerRadius="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="0"
-                            x:Name="StackPanel">
-                    <Grid Height="90">
-                        <ToggleButton x:Name="ToggleButtonMainWindow"
-                                      VerticalAlignment="Center"
-                                      HorizontalAlignment="Left"
-                                      Margin="12,0,0,0"
-                                      Height="48"
-                                      Width="48"
-                                      BorderThickness="0"
-                                      Checked="ToggleButtonChecked"
-                                      Unchecked="ToggleButtonUnchecked">
-                            <ToggleButton.Background>
-                                <ImageBrush ImageSource="/Resources/Icons/MainWindow/MenuButton.png"
-                                            Stretch="None"/>
-                            </ToggleButton.Background>
+                    <StackPanel Grid.Row="0"
+                                x:Name="StackPanel">
+                        <Grid Height="100">
+                            <ToggleButton x:Name="ToggleButtonMainWindow"
+                                          VerticalAlignment="Center"
+                                          Style="{StaticResource ToggleButtonMainWindowStyle}"
+                                          HorizontalAlignment="Left"
+                                          Margin="12,0,0,0"
+                                          Height="50"
+                                          Width="50"
+                                          BorderThickness="0"
+                                          Checked="ToggleButtonChecked"
+                                          Unchecked="ToggleButtonUnchecked">
+                                <ToggleButton.Background>
+                                    <ImageBrush ImageSource="/Resources/Icons/MainWindow/MenuButton.png"
+                                                Stretch="None"/>
+                                </ToggleButton.Background>
 
-                            <ToggleButton.Triggers>
-                                <EventTrigger RoutedEvent="ToggleButton.Checked">
-                                    <BeginStoryboard>
-                                        <Storyboard x:Name="ShowStackPanel">
-                                            <DoubleAnimation Duration="0:0:0.3"                                          
+                                <ToggleButton.Triggers>
+                                    <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                        <BeginStoryboard>
+                                            <Storyboard x:Name="ShowStackPanel">
+                                                <DoubleAnimation Duration="0:0:0.3"                                          
                                                              Storyboard.TargetName="NavigationPanel"
                                                              Storyboard.TargetProperty="Width"
                                                              BeginTime="0:0:0"
                                                              From="230" To="72">
-                                            </DoubleAnimation>
+                                                </DoubleAnimation>
 
-                                            <DoubleAnimation Duration="0:0:0.5"
+                                                <DoubleAnimation Duration="0:0:0.5"
                                                              Storyboard.TargetName="ToggleButton"
                                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
                                                              From="0" By="2" To="90"
                                                              FillBehavior="Stop">
-                                            </DoubleAnimation>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
 
-                                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
-                                    <BeginStoryboard>
-                                        <Storyboard x:Name="HideStackPanel">
-                                            <DoubleAnimation Duration="0:0:0.3"                                                
+                                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                        <BeginStoryboard>
+                                            <Storyboard x:Name="HideStackPanel">
+                                                <DoubleAnimation Duration="0:0:0.3"                                                
                                                              Storyboard.TargetName="NavigationPanel"
                                                              Storyboard.TargetProperty="Width"
                                                              BeginTime="0:0:0"
                                                              From="72" To="230">
-                                            </DoubleAnimation>
+                                                </DoubleAnimation>
 
-                                            <DoubleAnimation Duration="0:0:0.5"
+                                                <DoubleAnimation Duration="0:0:0.5"
                                                              Storyboard.TargetName="ToggleButton"
                                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
                                                              From="90" By="2" To="0"
                                                              FillBehavior="Stop">
-                                            </DoubleAnimation>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </ToggleButton.Triggers>
-                        </ToggleButton>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </ToggleButton.Triggers>
+                            </ToggleButton>
 
-                        <TextBlock Text="МЕНЮ"
+                            <TextBlock Text="МЕНЮ"
                                    FontSize="24"   
                                    Margin="85,0,0,0"
                                    VerticalAlignment="Center"
                                    Foreground="White"
                                    Background="Transparent"
                                    Style="{StaticResource MainStyleMenuText}">
-                            <TextBlock.Effect>
-                                <DropShadowEffect BlurRadius="10"
+                                <TextBlock.Effect>
+                                    <DropShadowEffect BlurRadius="10"
                                                   ShadowDepth="1"
                                                   Direction="-90"
                                                   Color="White"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
+                                </TextBlock.Effect>
+                            </TextBlock>
 
-                        <Border CornerRadius="10" 
-                                Width="90"
-                                Height="30"
-                                HorizontalAlignment="Right" 
-                                VerticalAlignment="Center">
-                            <Button Content="О программе"
+
+                        </Grid>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <ListViewItem Grid.Row="0"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,15"
+                                  MouseEnter="ListViewItemMouseEnter">
+                            <StackPanel Orientation="Horizontal"
+                                    Width="230">
+                                <Button Command="{Binding MainPageCommand}" 
+                                    Height="48" Width="48"
+                                    Margin="7,0,0,0"
                                     Style="{StaticResource TransparentStyleButton}">
-                                
-                            </Button>
-                        </Border>
+                                    <Image Source="/Resources/Icons/MainWindow/Main.png"
+                                       Stretch="None"/>
+                                </Button>
+
+                                <TextBlock Text="Главная"
+                                       Margin="25,0,0,0"
+                                       Style="{StaticResource MainStyleMenuText}"/>
+                            </StackPanel>
+
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="ToolTipMain"
+                                     Content="Главная страница" Width="150"
+                                     Style="{StaticResource ToolTipStyle}"/>
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+
+                        <ListViewItem Grid.Row="1"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,15"
+                                  MouseEnter="ListViewItemMouseEnter">
+                            <StackPanel Orientation="Horizontal"
+                                    Width="230">
+                                <Button Command="{Binding GoToWorkersPage}" 
+                                    Height="48" Width="48"
+                                    Margin="7,0,0,0"
+                                    Style="{StaticResource TransparentStyleButton}">
+                                    <Image Source="/Resources/Icons/MainWindow/Person.png"
+                                       Stretch="None"/>
+                                </Button>
+
+                                <TextBlock Text="Сотрудники"
+                                       Margin="25,0,0,0"
+                                       Style="{StaticResource MainStyleMenuText}"/>
+                            </StackPanel>
+
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="ToolTipWorkers"
+                                     Content="Создать/изменить" Width="160"
+                                     Style="{StaticResource ToolTipStyle}"/>
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+                        
+                        <ListViewItem Grid.Row="2"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,15"
+                                  MouseEnter="ListViewItemMouseEnter">
+                            <StackPanel Orientation="Horizontal"
+                                    Width="230">
+                                <Button Command="{Binding GoToSearchPage}" 
+                                    Height="48" Width="48"
+                                    Margin="7,0,0,0"
+                                    Style="{StaticResource TransparentStyleButton}">
+                                    <Image Source="/Resources/Icons/MainWindow/Search.png"
+                                       Stretch="None"/>
+                                </Button>
+
+                                <TextBlock Text="Поиск"
+                                       Margin="25,0,0,0"
+                                       Style="{StaticResource MainStyleMenuText}"/>
+                            </StackPanel>
+
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="ToolTipSearch"
+                                         Content="Найти по фильтрам" Width="160"
+                                         Style="{StaticResource ToolTipStyle}"/>
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+
+                        <ListViewItem Grid.Row="3"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,15"
+                                  MouseEnter="ListViewItemMouseEnter">
+                            <StackPanel Orientation="Horizontal"
+                                    Width="230">
+                                <Button Command="{Binding GoToDataPage}" 
+                                    Height="48" Width="48"
+                                    Margin="7,0,0,0"
+                                    Style="{StaticResource TransparentStyleButton}">
+                                    <Image Source="/Resources/Icons/MainWindow/Data.png"
+                                       Stretch="None"/>
+                                </Button>
+
+                                <TextBlock Text="Данные"
+                                       Margin="25,0,0,0"
+                                       Style="{StaticResource MainStyleMenuText}"/>
+                            </StackPanel>
+
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="ToolTipData"
+                                     Content="Экспорт/импорт" Width="150"
+                                     Style="{StaticResource ToolTipStyle}"/>
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+
+                        <ListViewItem Grid.Row="4"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,15"
+                                  MouseEnter="ListViewItemMouseEnter">
+                            <StackPanel Orientation="Horizontal"
+                                    Width="230">
+                                <Button Command="{Binding GoToInfoPage}" 
+                                    Height="48" Width="48"
+                                    Margin="7,0,0,0"
+                                    Style="{StaticResource TransparentStyleButton}">
+                                    <Image Source="/Resources/Icons/MainWindow/Info.png"
+                                       Stretch="None"/>
+                                </Button>
+
+                                <TextBlock Text="Информация"
+                                       Margin="25,0,0,0"
+                                       Style="{StaticResource MainStyleMenuText}"/>
+                            </StackPanel>
+
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="ToolTipInformation"
+                                     Content="О программе" Width="150"
+                                     Style="{StaticResource ToolTipStyle}"/>
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
                     </Grid>
-                </StackPanel>
-
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <ListViewItem Grid.Row="0"
-                                  HorizontalAlignment="Left"
-                                  Margin="0,0,0,15"
-                                  MouseEnter="ListViewItemMouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Button Command="{Binding GoToWorkers}" 
-                                    Height="48" Width="48"
-                                    Margin="7,0,0,0"
-                                    Style="{StaticResource TransparentStyleButton}">
-                                <Image Source="/Resources/Icons/MainWindow/MenuButton.png"
-                                       Stretch="None"/>
-                            </Button>
-
-                            <TextBlock Text="Сотрудники"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip x:Name="ToolTipWorkers"
-                                     Content="Workers"
-                                     Style="{StaticResource ToolTipStyle}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-
-                    <ListViewItem Grid.Row="1"
-                                  HorizontalAlignment="Left"
-                                  Margin="0,0,0,15"
-                                  MouseEnter="ListViewItemMouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Button Command="{Binding GoToSearchPage}" 
-                                    Height="48" Width="48"
-                                    Margin="7,0,0,0"
-                                    Style="{StaticResource TransparentStyleButton}">
-                                <Image Source="/Resources/Icons/MainWindow/MenuButton.png"
-                                       Stretch="None"/>
-                            </Button>
-
-                            <TextBlock Text="Поиск"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip x:Name="ToolTipSearch"
-                                     Content="Search"
-                                     Style="{StaticResource ToolTipStyle}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
 
                     <ListViewItem Grid.Row="2"
-                                  HorizontalAlignment="Left"
-                                  Margin="0,0,0,15"
-                                  MouseEnter="ListViewItemMouseEnter">
-                        <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                            <Button Command="{Binding GoToDataPage}" 
-                                    Height="48" Width="48"
-                                    Margin="7,0,0,0"
-                                    Style="{StaticResource TransparentStyleButton}">
-                                <Image Source="/Resources/Icons/MainWindow/MenuButton.png"
-                                       Stretch="None"/>
-                            </Button>
-
-                            <TextBlock Text="Данные"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
-                        </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip x:Name="ToolTipData"
-                                     Content="Data"
-                                     Style="{StaticResource ToolTipStyle}"/>
-                        </ListViewItem.ToolTip>
-                    </ListViewItem>
-                </Grid>
-                
-                <ListViewItem Grid.Row="2"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Bottom"
                               Margin="0,0,0,15"
                               MouseEnter="ListViewItemMouseEnter">
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 Width="230">
-                        <Button Command="{Binding GoHome}" 
+                            <Button Command="{Binding GoToSettingsPage}" 
                                 Height="48" Width="48"
                                 Margin="7,0,0,0"
                                 Style="{StaticResource TransparentStyleButton}">
-                            <Image Source="/Resources/Icons/MainWindow/MenuButton.png"
+                                <Image Source="/Resources/Icons/MainWindow/Settings.png"
                                    Stretch="None"/>
-                        </Button>
-                        
-                        <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="    Стиль"
-                                       FontSize="18"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
-                            <TextBlock Text="программы"
-                                       FontSize="18"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
-                        </StackPanel>
-                      
-                    </StackPanel>
+                            </Button>
 
-                    <ListViewItem.ToolTip>
-                        <ToolTip x:Name="ToolTipStyles"
-                                 Content="Styles"
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Настройки"
+                                       FontSize="20"
+                                       Margin="25,0,0,0"
+                                       Style="{StaticResource MainStyleMenuText}"/>
+                                <TextBlock Text="программы"
+                                       FontSize="18"
+                                       Margin="25,0,0,0"
+                                       Style="{StaticResource MainStyleMenuText}"/>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="ToolTipSettings"
+                                 Content="Настройки"
                                  Style="{StaticResource ToolTipStyle}"/>
-                    </ListViewItem.ToolTip>
-                </ListViewItem>
-            </Grid>
+                        </ListViewItem.ToolTip>
+                    </ListViewItem>
+                </Grid>
+            </Border>
             
             <Frame Name="MainWindowFrame"
                    Grid.Column="1"
-                   NavigationUIVisibility="Hidden"/>
+                   NavigationUIVisibility="Hidden"
+                   Content="{Binding CurrentPage}"/>
         </Grid>
     </Border>
 </Window>

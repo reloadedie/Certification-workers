@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Background="{x:Null}"
         Title="InfoWindow" Height="450" Width="800">
-    <Border CornerRadius="20" Style="{StaticResource InfoWindowBorderTheme}">
+    <Border CornerRadius="20" Style="{DynamicResource InfoWindowBorderTheme}">
         
     </Border>
 </Window>

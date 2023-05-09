@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\DataPage\AddDocument.png" />
+    <None Remove="Resources\Icons\DayFlag.png" />
+    <None Remove="Resources\Icons\FileOpen.png" />
+    <None Remove="Resources\Icons\Groups.png" />
+    <None Remove="Resources\Icons\Link.png" />
     <None Remove="Resources\Icons\MainWindow\Data.png" />
     <None Remove="Resources\Icons\MainWindow\Info.png" />
     <None Remove="Resources\Icons\MainWindow\Main.png" />
@@ -16,10 +21,30 @@
     <None Remove="Resources\Icons\MainWindow\Person.png" />
     <None Remove="Resources\Icons\MainWindow\Search.png" />
     <None Remove="Resources\Icons\MainWindow\Settings.png" />
+    <None Remove="Resources\Icons\ManageAccounts.png" />
     <None Remove="Resources\Icons\MenuButton.png" />
+    <None Remove="Resources\Icons\Quiz.png" />
+    <None Remove="Resources\Icons\SettingsAccountBox.png" />
+    <None Remove="Resources\Icons\WorkersPage\PersonAdd.png" />
+    <None Remove="Resources\Icons\WorkersPage\PersonRemove.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Icons\DataPage\AddDocument.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\DayFlag.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\DataPage\FileOpen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Groups.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Link.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\MainWindow\Data.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -44,10 +69,21 @@
     <Resource Include="Resources\Icons\MainWindow\Settings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Icons\WorkersPage\" />
+    <Resource Include="Resources\Icons\Quiz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\WorkersPage\PersonEdit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\SettingsAccountBox.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\WorkersPage\PersonAdd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\WorkersPage\PersonRemove.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Background="{x:Null}"
-        Title="Аттестация средних медицинских работников" Height="800" Width="1300">
+        Title="Аттестация средних медицинских работников"
+        Height="800" Width="1300"
+        MinWidth="960" MinHeight="400">
     <Border CornerRadius="15"
             Style="{StaticResource MainWindowBorderTheme}">
         <Grid>
@@ -19,7 +21,7 @@
             <Border Grid.Column="0"
                     Style="{StaticResource LeftStackPanelBorder}"
                     CornerRadius="15">
-                <Grid>
+                <Grid x:Name="NavigationPanel">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -31,12 +33,11 @@
                                 x:Name="StackPanel">
                         <Grid Height="100">
                             <ToggleButton x:Name="ToggleButtonMainWindow"
-                                          VerticalAlignment="Center"
                                           Style="{StaticResource ToggleButtonMainWindowStyle}"
                                           HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
                                           Margin="12,0,0,0"
-                                          Height="50"
-                                          Width="50"
+                                          Height="50" Width="50"
                                           BorderThickness="0"
                                           Checked="ToggleButtonChecked"
                                           Unchecked="ToggleButtonUnchecked">
@@ -50,14 +51,14 @@
                                         <BeginStoryboard>
                                             <Storyboard x:Name="ShowStackPanel">
                                                 <DoubleAnimation Duration="0:0:0.3"                                          
-                                                             Storyboard.TargetName="NavigationPanel"
-                                                             Storyboard.TargetProperty="Width"
-                                                             BeginTime="0:0:0"
-                                                             From="230" To="72">
+                                                                 Storyboard.TargetName="NavigationPanel"
+                                                                 Storyboard.TargetProperty="Width"
+                                                                 BeginTime="0:0:0"
+                                                                 From="230" To="74">
                                                 </DoubleAnimation>
 
                                                 <DoubleAnimation Duration="0:0:0.5"
-                                                             Storyboard.TargetName="ToggleButton"
+                                                             Storyboard.TargetName="ToggleButtonMainWindow"
                                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
                                                              From="0" By="2" To="90"
                                                              FillBehavior="Stop">
@@ -70,17 +71,17 @@
                                         <BeginStoryboard>
                                             <Storyboard x:Name="HideStackPanel">
                                                 <DoubleAnimation Duration="0:0:0.3"                                                
-                                                             Storyboard.TargetName="NavigationPanel"
-                                                             Storyboard.TargetProperty="Width"
-                                                             BeginTime="0:0:0"
-                                                             From="72" To="230">
+                                                                 Storyboard.TargetName="NavigationPanel"
+                                                                 Storyboard.TargetProperty="Width"
+                                                                 BeginTime="0:0:0"
+                                                                 From="74" To="230">
                                                 </DoubleAnimation>
 
                                                 <DoubleAnimation Duration="0:0:0.5"
-                                                             Storyboard.TargetName="ToggleButton"
-                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                                                             From="90" By="2" To="0"
-                                                             FillBehavior="Stop">
+                                                                 Storyboard.TargetName="ToggleButtonMainWindow"
+                                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                                                 From="90" By="2" To="0"
+                                                                 FillBehavior="Stop">
                                                 </DoubleAnimation>
                                             </Storyboard>
                                         </BeginStoryboard>
@@ -89,7 +90,7 @@
                             </ToggleButton>
 
                             <TextBlock Text="МЕНЮ"
-                                   FontSize="24"   
+                                   FontSize="30"   
                                    Margin="85,0,0,0"
                                    VerticalAlignment="Center"
                                    Foreground="White"
@@ -99,7 +100,7 @@
                                     <DropShadowEffect BlurRadius="10"
                                                   ShadowDepth="1"
                                                   Direction="-90"
-                                                  Color="White"/>
+                                                  Color="Gray"/>
                                 </TextBlock.Effect>
                             </TextBlock>
 
@@ -149,22 +150,22 @@
                             <StackPanel Orientation="Horizontal"
                                     Width="230">
                                 <Button Command="{Binding GoToWorkersPage}" 
-                                    Height="48" Width="48"
-                                    Margin="7,0,0,0"
-                                    Style="{StaticResource TransparentStyleButton}">
+                                        Height="48" Width="48"
+                                        Margin="7,0,0,0"
+                                        Style="{StaticResource TransparentStyleButton}">
                                     <Image Source="/Resources/Icons/MainWindow/Person.png"
-                                       Stretch="None"/>
+                                           Stretch="None"/>
                                 </Button>
 
                                 <TextBlock Text="Сотрудники"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource MainStyleMenuText}"/>
                             </StackPanel>
 
                             <ListViewItem.ToolTip>
                                 <ToolTip x:Name="ToolTipWorkers"
-                                     Content="Создать/изменить" Width="160"
-                                     Style="{StaticResource ToolTipStyle}"/>
+                                         Content="Создать/изменить" Width="150"
+                                         Style="{StaticResource ToolTipStyle}"/>
                             </ListViewItem.ToolTip>
                         </ListViewItem>
                         
@@ -205,7 +206,7 @@
                                     Margin="7,0,0,0"
                                     Style="{StaticResource TransparentStyleButton}">
                                     <Image Source="/Resources/Icons/MainWindow/Data.png"
-                                       Stretch="None"/>
+                                           Stretch="None"/>
                                 </Button>
 
                                 <TextBlock Text="Данные"
@@ -253,13 +254,13 @@
                               Margin="0,0,0,15"
                               MouseEnter="ListViewItemMouseEnter">
                         <StackPanel Orientation="Horizontal"
-                                Width="230">
+                                    Width="230">
                             <Button Command="{Binding GoToSettingsPage}" 
-                                Height="48" Width="48"
-                                Margin="7,0,0,0"
-                                Style="{StaticResource TransparentStyleButton}">
+                                    Height="48" Width="48"
+                                    Margin="7,0,0,0"
+                                    Style="{StaticResource TransparentStyleButton}">
                                 <Image Source="/Resources/Icons/MainWindow/Settings.png"
-                                   Stretch="None"/>
+                                       Stretch="None"/>
                             </Button>
 
                             <StackPanel VerticalAlignment="Center">
@@ -268,17 +269,17 @@
                                        Margin="25,0,0,0"
                                        Style="{StaticResource MainStyleMenuText}"/>
                                 <TextBlock Text="программы"
-                                       FontSize="18"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
+                                           FontSize="18"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource MainStyleMenuText}"/>
                             </StackPanel>
 
                         </StackPanel>
 
                         <ListViewItem.ToolTip>
                             <ToolTip x:Name="ToolTipSettings"
-                                 Content="Настройки"
-                                 Style="{StaticResource ToolTipStyle}"/>
+                                     Content="Настройки"
+                                     Style="{StaticResource ToolTipStyle}"/>
                         </ListViewItem.ToolTip>
                     </ListViewItem>
                 </Grid>

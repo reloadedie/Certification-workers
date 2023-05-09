@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="InfoPage">
 
-    <Border Style="{StaticResource InfoPageBorderTheme}">
+    <Border Style="{DynamicResource InfoPageBorderTheme}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -29,7 +29,7 @@
 
                 <StackPanel Orientation="Vertical" Margin="20 0 10 0">
                     <Label Content="Рабочая почта"
-                               Style="{StaticResource LabelUsStyle}"
+                               Style="{DynamicResource LabelUsStyle}"
                                FontSize="24"
                                Margin="5"/>
                     <TextBox Text="reloadedie@mail.ru" IsReadOnly="True"
@@ -44,15 +44,15 @@
             <Border Grid.Row="2"
                         Width="180"
                         Height="50"
-                        Style="{StaticResource BorderCorner1Button}"
+                        Style="{DynamicResource BorderCorner1Button}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Bottom"
                         Background="LightBlue"
                         Margin="0 0 0 10">
-                <Border Style="{StaticResource BorderCorner2Button}">
+                <Border Style="{DynamicResource BorderCorner2Button}">
                     <Button Content="О программе"
-                                Command="{Binding OpenInfoWindow}"
-                                Style="{StaticResource TransparentStyleButtonIn2CornerBorders}">
+                            Command="{Binding OpenInfoWindow}"
+                            Style="{DynamicResource TransparentStyleButtonIn2CornerBorders}">
 
                     </Button>
                 </Border>

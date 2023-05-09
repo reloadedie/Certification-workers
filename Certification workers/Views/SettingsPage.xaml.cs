@@ -24,5 +24,43 @@ namespace Certification_workers.Views
         {
             InitializeComponent();
         }
+
+        private void ToggleButtonChecked(object sender, RoutedEventArgs e)
+        {
+            var uriLight = new Uri(@"Themes/LightTheme.xaml", UriKind.Relative);
+
+            ResourceDictionary resourceDictionary = Application.LoadComponent(uriLight) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+        }
+
+        private void ToggleButtonUnchecked(object sender, RoutedEventArgs e)
+        {
+            var uriDark = new Uri(@"Themes/DarkTheme.xaml", UriKind.Relative);
+
+            ResourceDictionary resourceDictionary = Application.LoadComponent(uriDark) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+        }
+
+        private void ButtonDarkTheme_Click(object sender, RoutedEventArgs e)
+        {
+            var uriDark = new Uri(@"Themes/DarkTheme.xaml", UriKind.Relative);
+
+            ResourceDictionary resourceDictionary = Application.LoadComponent(uriDark) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+
+        }
+
+        private void ButtonLightTheme_Click(object sender, RoutedEventArgs e)
+        {
+            var uriLight = new Uri(@"Themes/LightTheme.xaml", UriKind.Relative);
+
+            ResourceDictionary resourceDictionary = Application.LoadComponent(uriLight) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+
+        }
     }
 }

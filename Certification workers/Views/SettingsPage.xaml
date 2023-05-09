@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Certification_workers.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="550" d:DesignWidth="900"
       Title="SettingsPage">
 
-    <Border Style="{StaticResource SettingsPageBorderTheme}">
+    <Border Style="{DynamicResource SettingsPageMainBorderTheme}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>
@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
 
             <Label Content="Настройки программы"
-                   Style="{StaticResource LabelUsStyle}"
+                   Style="{DynamicResource LabelUsStyle}"
                    FontSize="36"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
@@ -30,26 +30,34 @@
                 <StackPanel Orientation="Vertical"
 >
                     <Label Content="Стиль программы"
-                           Style="{StaticResource LabelUsStyle}"
+                           Style="{DynamicResource LabelUsStyle}"
                            FontSize="24"
                            HorizontalAlignment="Center"
                            Margin="5"/>
 
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
-                                Margin="20 10 10 0">
+                                Margin="10 10 10 0">
 
-                        <Label Content="Тёмная тема"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"
-                               Style="{StaticResource LabelUsStyle}" 
-                               FontSize="16"/>
+                        <Border Background="#123"
+                                CornerRadius="10"
+                                Width="130">
+                            <Button Click="ButtonDarkTheme_Click"
+                                    Content="Тёмная тема"
+                                    Style="{StaticResource TransparentStyleButton}"
+                                    FontSize="18"
+                                    Foreground="White">
+                            </Button>
+                        </Border>
                         
                         <ToggleButton Grid.Row="1" 
-                                      x:Name="ToggleButton2"
-                                      IsChecked="False"
+                                      x:Name="ToggleButtonChangeStyles"
+                                      IsChecked="{Binding StyleValue}"
                                       Width="100"
                                       Height="40"
-                                      Margin="10 0 10 0">
+                                      Margin="10 0 10 0"
+                                      Checked="ToggleButtonChecked"
+                                      Unchecked="ToggleButtonUnchecked">
                             <ToggleButton.Template>
                                 <ControlTemplate TargetType="ToggleButton">
                                     <Border x:Name="BorderToggle2R1" 
@@ -77,10 +85,16 @@
                             </ToggleButton.Template>
                         </ToggleButton>
 
-                        <Label Content="Светлая тема"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"
-                               Style="{StaticResource LabelUsStyle}" 
-                               FontSize="16"/>
+                        <Border Background="#F5F5F5"
+                                CornerRadius="10"
+                                Width="130">
+                            <Button Click="ButtonLightTheme_Click"
+                                    Content="Светлая тема"
+                                    Style="{StaticResource TransparentStyleButton}"
+                                    FontSize="18"
+                                    Foreground="Black">
+                            </Button>
+                        </Border>
                     </StackPanel>
 
                 </StackPanel>    
@@ -88,13 +102,13 @@
             </Grid>
 
             <Border Grid.Row="2"
-                        Width="180"
-                        Height="50"
-                        Style="{StaticResource BorderCorner1Button}"
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Bottom"
-                        Background="LightBlue"
-                        Margin="0 0 0 10">
+                    Width="180"
+                    Height="50"
+                    Style="{DynamicResource BorderCorner1Button}"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Bottom"
+                    Background="LightBlue"
+                    Margin="0 0 0 10">
                 <Border Style="{StaticResource BorderCorner2Button}">
                     <Button Content="О программе"
                                 Command="{Binding OpenInfoWindow}"

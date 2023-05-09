@@ -1,18 +1,6 @@
-﻿using Certification_workers.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Certification_workers.ViewModels.WorkersVMFolder;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Certification_workers.Views
 {
@@ -25,6 +13,16 @@ namespace Certification_workers.Views
         {
             InitializeComponent();
             DataContext = new WorkersPageVM();
+        }
+
+        private void ToggleButtonChecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ToggleButtonUnchecked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

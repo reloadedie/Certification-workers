@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Certification_workers.ViewModels
+namespace Certification_workers.ViewModels.InfoVMFolder
 {
-    public class WorkersPageVM
+    public class InfoPageVM
     {
-        public WorkersPageVM()
-        {
 
+        public InfoPageVM()
+        {
         }
     }
 }

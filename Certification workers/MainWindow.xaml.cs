@@ -45,7 +45,6 @@ namespace Certification_workers
             if (ToggleButtonMainWindow.IsChecked == true)
             {
                 ToolTipWorkers.Visibility = Visibility.Collapsed;
-                ToolTipSearch.Visibility = Visibility.Collapsed;
                 ToolTipData.Visibility = Visibility.Collapsed;
                 ToolTipInformation.Visibility = Visibility.Collapsed;
                 ToolTipMain.Visibility = Visibility.Collapsed;
@@ -55,7 +54,6 @@ namespace Certification_workers
             else
             {
                 ToolTipWorkers.Visibility = Visibility.Visible;
-                ToolTipSearch.Visibility = Visibility.Visible;
                 ToolTipData.Visibility = Visibility.Visible;
                 ToolTipInformation.Visibility = Visibility.Visible;
                 ToolTipMain.Visibility = Visibility.Visible;

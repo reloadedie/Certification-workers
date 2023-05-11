@@ -44,7 +44,7 @@ namespace Certification_workers
 
             GoToSearchPage = new CoreCommand(() => 
             {
-                MainWindow.MainNavigate(new SearchPage());
+                //MainWindow.MainNavigate(new SearchPage());
             });
 
             GoToDataPage = new CoreCommand(() => 

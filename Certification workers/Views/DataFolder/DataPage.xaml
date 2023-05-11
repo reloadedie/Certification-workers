@@ -8,10 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DataPage">
 
-    <Grid>
-        <Label Content="DataPage"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Foreground="White"/>
-    </Grid>
+    <Border Style="{DynamicResource DataPageMainBorderStyle}">
+        
+    </Border>
 </Page>

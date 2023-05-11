@@ -9,9 +9,9 @@
         Background="{x:Null}"
         Title="Аттестация средних медицинских работников"
         Height="800" Width="1300"
-        MinWidth="960" MinHeight="400">
+        MinWidth="1260" MinHeight="736">
     <Border CornerRadius="15"
-            Style="{StaticResource MainWindowBorderTheme}">
+            Style="{DynamicResource MainWindowBorderTheme}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -19,7 +19,7 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0"
-                    Style="{StaticResource LeftStackPanelBorder}"
+                    Style="{DynamicResource LeftStackPanelBorder}"
                     CornerRadius="15">
                 <Grid x:Name="NavigationPanel">
                     <Grid.RowDefinitions>
@@ -90,12 +90,12 @@
                             </ToggleButton>
 
                             <TextBlock Text="МЕНЮ"
-                                   FontSize="30"   
-                                   Margin="85,0,0,0"
-                                   VerticalAlignment="Center"
-                                   Foreground="White"
-                                   Background="Transparent"
-                                   Style="{StaticResource MainStyleMenuText}">
+                                       FontSize="30"   
+                                       Margin="85,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       Background="Transparent"
+                                       Style="{DynamicResource MainStyleMenuText}">
                                 <TextBlock.Effect>
                                     <DropShadowEffect BlurRadius="10"
                                                   ShadowDepth="1"
@@ -133,7 +133,7 @@
 
                                 <TextBlock Text="Главная"
                                        Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
+                                       Style="{DynamicResource MainStyleMenuText}"/>
                             </StackPanel>
 
                             <ListViewItem.ToolTip>
@@ -169,36 +169,10 @@
                             </ListViewItem.ToolTip>
                         </ListViewItem>
                         
-                        <ListViewItem Grid.Row="2"
-                                  HorizontalAlignment="Left"
-                                  Margin="0,0,0,15"
-                                  MouseEnter="ListViewItemMouseEnter">
-                            <StackPanel Orientation="Horizontal"
-                                    Width="230">
-                                <Button Command="{Binding GoToSearchPage}" 
-                                    Height="48" Width="48"
-                                    Margin="7,0,0,0"
-                                    Style="{StaticResource TransparentStyleButton}">
-                                    <Image Source="/Resources/Icons/MainWindow/Search.png"
-                                       Stretch="None"/>
-                                </Button>
-
-                                <TextBlock Text="Поиск"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
-                            </StackPanel>
-
-                            <ListViewItem.ToolTip>
-                                <ToolTip x:Name="ToolTipSearch"
-                                         Content="Найти по фильтрам" Width="160"
-                                         Style="{StaticResource ToolTipStyle}"/>
-                            </ListViewItem.ToolTip>
-                        </ListViewItem>
-
                         <ListViewItem Grid.Row="3"
-                                  HorizontalAlignment="Left"
-                                  Margin="0,0,0,15"
-                                  MouseEnter="ListViewItemMouseEnter">
+                                      HorizontalAlignment="Left"
+                                      Margin="0,0,0,15"
+                                      MouseEnter="ListViewItemMouseEnter">
                             <StackPanel Orientation="Horizontal"
                                     Width="230">
                                 <Button Command="{Binding GoToDataPage}" 
@@ -287,8 +261,7 @@
             
             <Frame Name="MainWindowFrame"
                    Grid.Column="1"
-                   NavigationUIVisibility="Hidden"
-                   Content="{Binding CurrentPage}"/>
+                   NavigationUIVisibility="Hidden"/>
         </Grid>
     </Border>
 </Window>

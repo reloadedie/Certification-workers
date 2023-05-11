@@ -27,6 +27,7 @@
     <None Remove="Resources\Icons\SettingsAccountBox.png" />
     <None Remove="Resources\Icons\WorkersPage\PersonAdd.png" />
     <None Remove="Resources\Icons\WorkersPage\PersonRemove.png" />
+    <None Remove="Resources\Icons\WorkersPage\Save.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,13 +64,19 @@
     <Resource Include="Resources\Icons\MainWindow\Person.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Icons\MainWindow\Search.png">
+    <Resource Include="Resources\Icons\WorkersPage\Save.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\WorkersPage\Search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\MainWindow\Settings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\Quiz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\WorkersPage\Sort.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\WorkersPage\PersonEdit.png">
@@ -84,6 +91,10 @@
     <Resource Include="Resources\Icons\WorkersPage\PersonRemove.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\WorkersFolder\" />
   </ItemGroup>
 
 </Project>

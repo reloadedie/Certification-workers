@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
 
             <Label Content="Связаться с разработчиком"
-                       Style="{StaticResource LabelUsStyle}"
+                       Style="{DynamicResource LabelUsStyle}"
                        FontSize="36"
                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
@@ -33,11 +33,12 @@
                                FontSize="24"
                                Margin="5"/>
                     <TextBox Text="reloadedie@mail.ru" IsReadOnly="True"
-                                 Margin="5"
-                                 FontSize="18"
-                                 Width="200"
-                                 HorizontalAlignment="Left"
-                                 Height="26"/>
+                             Margin="5"
+                             FontSize="18"
+                             Width="200"
+                             Foreground="Black"
+                             HorizontalAlignment="Left"
+                             Height="26"/>
                 </StackPanel>
             </Grid>
 

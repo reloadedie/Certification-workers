@@ -1,14 +1,19 @@
 ﻿using Certification_workers.Core;
 using Certification_workers.Models;
+using ExcelDataReader;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media.Media3D;
 
 namespace Certification_workers.ViewModels.WorkersVMFolder
 {
@@ -27,10 +32,10 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
             }
         }
 
-
         public ICollectionView WorkersCollectionView { get; set; }
 
         public CoreCommand AddWorker { get; set; }
+        public CoreCommand DownloadFile { get; set; }
         public CoreCommand SaveWorkersInFile { get; set; }
         public CoreCommand DeleteWorker { get; set; }
 
@@ -38,13 +43,13 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
         public WorkersPageVM()
         {
             DateCertifiedBool = new List<DateStruct>
-                (
-                    new DateStruct[]
-                    {
-                        new DateStruct{Name = "Сертифицирован", Value=true },
-                        new DateStruct{Name = "Не сертифицирован", Value=false }
-                    }
-                );
+            (
+                new DateStruct[]
+                {
+                    new DateStruct{Name = "Сертифицирован", Value=true },
+                    new DateStruct{Name = "Не сертифицирован", Value=false }
+                }
+            );
 
             ListWorkers = new ObservableCollection<Worker>
             {
@@ -60,16 +65,16 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
                     Category = "1",
                     GroupSpeciality = "1145",
                     Organization = "ВБМК",
-                    IsCertified = true,
-                    Id = 1,
+                   // IsCertified = true,
+                   // Id = 1,
                     Description = "Сотрудник",
-                    DateCertified = new DateTime(DateTime.Today.Year),
+                    //DateCertified = new DateTime(DateTime.Today.Year),
                     StringDateCertified = "11.05.2023"
                 }
             };
 
             WorkersCollectionView = CollectionViewSource.GetDefaultView(ListWorkers);
-            WorkersCollectionView.Filter = ShortFilterWorkers; 
+            WorkersCollectionView.Filter = ShortFilterWorkers;
             WorkersCollectionView.Filter = LongFilterWorkers;
             WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Ascending));
 
@@ -89,24 +94,28 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
                     Category = "не указано",
                     GroupSpeciality = "пусто",
                     Organization = "не указано",
-                    IsCertified = false,
-                    Id = null,
+                    //IsCertified = false,
+                    //Id = null,
                     Description = "Сотрудник",
-                    DateCertified = null,
+                    //DateCertified = null,
                     StringDateCertified = "не указано"
                 });
 
             });
 
+            DownloadFile = new CoreCommand(() =>
+            {
+                Task.Run(OpenExcelFile);
+            });
 
             SaveWorkersInFile = new CoreCommand(() =>
             {
-
+                Task.Run(SynchronizeDataWorkersFromFile);
             });
 
             DeleteWorker = new CoreCommand(() =>
             {
-               
+
                 if (MessageBox.Show("Вы точно хотите удалить?", "Вопрос",
                                      MessageBoxButton.YesNo,
                                      MessageBoxImage.Question) == MessageBoxResult.No)
@@ -121,9 +130,9 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
 
             #endregion
 
-            Task.Run(GetDataWorkersFromFile);
         }
 
+        // fullName filter
         #region
         private string _workersFullNameString = string.Empty;
         public string WorkersFullNameFilterString
@@ -150,6 +159,7 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
         }
         #endregion
 
+        //more filters
         #region
 
         private string _workersNameString = string.Empty;
@@ -307,7 +317,7 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
         {
             if (obj is Worker worker)
             {
-                string bth = worker.DateCertified.ToString();
+                // string bth = worker.DateCertified.ToString();
 
                 return worker.Name.Contains(_workersNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.LastName.Contains(_workersLastNameString, StringComparison.InvariantCultureIgnoreCase) &&
@@ -327,7 +337,55 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
 
         #endregion
 
-        async Task GetDataWorkersFromFile()
+
+        IExcelDataReader edr;
+        public string FilePath = string.Empty;
+        string path = @"C:\progs\ListExcel.xlsx";
+
+        public async Task OpenExcelFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "EXCEL Files (*.xlsx)|*.xlsx|EXCEL Files 2003 (*.xls)|*.xls|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+
+                var info = new FileInfo(openFileDialog.FileName);
+                FilePath = Environment.CurrentDirectory + info;
+
+                try
+                {
+                    var rows = File.ReadAllLines(path);
+                    for (int i = 0; i < rows.Length; i++)
+                    {
+                        var cols = rows[i].Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        ListWorkers.Add(new Worker
+                        {
+                            IdCode = cols[0],
+                            Name = cols[1],
+                            LastName = cols[2],
+                            Patronymic = cols[3],
+                            FullName = cols[4],
+                            Organization = cols[5],
+                            GroupSpeciality = cols[6],
+                            PhoneNumber = cols[7],
+                            Category = cols[8],
+                            IsCertifiedString = cols[9],
+                            StringDateCertified = cols[10]
+                        });
+                        ListWorkers = new ObservableCollection<Worker>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+        }
+
+
+        async Task SynchronizeDataWorkersFromFile()
         {
             try
             {
@@ -338,29 +396,7 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
 
             }
 
-            #region mat add
-            /*
-            var materialsType = connection.MaterialType.ToList();
-            var rows = File.ReadAllLines(path);
-            for (int i = 0; i<rows.Length; i++)
-            {
-                var cols = rows[i].Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-
-                connection.Material.Add(new Material
-                {
-                    Title = cols[0],
-                    MaterialType = materialsType.First(s => s.Title == cols[1]),
-                    Image = cols[2],
-                    Cost = decimal.Parse(cols[3]),
-                    CountInStock = int.Parse(cols[4]),
-                    MinCount = int.Parse(cols[5]),
-                    CountInPack = int.Parse(cols[6]),
-                    Unit = cols[7]
-                });
-            }*/
-            #endregion
         }
-
 
     }
 }

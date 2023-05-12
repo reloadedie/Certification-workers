@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Certification_workers.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="690" d:DesignWidth="900"
-      MinWidth="900" MinHeight="480"
+      d:DesignHeight="700" d:DesignWidth="960"
+      MinWidth="900" MinHeight="500"
       Title="WorkersPage">
 
     <Page.Resources>
@@ -14,9 +14,10 @@
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Background" Value="#FF13508D"/>
         </Style>
+
     </Page.Resources>
 
-    <Grid>
+    <Grid Background="#FF3A2D54">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
@@ -58,6 +59,21 @@
                         <Label Content="Удалить"
                                    Style="{DynamicResource LabelUsStyleVHCenter}"/>
                     </StackPanel>
+
+                    <StackPanel Orientation="Vertical"
+                                Margin="5 0 0 0">
+                        <Border Style="{StaticResource TransparentBorderBlueColorButtonIcon4848Style}"
+                                HorizontalAlignment="Center" Margin="0 0 0 0">
+                            <Button Style="{StaticResource TransparentStyleButton}"
+                                    Command="{Binding DownloadFile}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="/Resources/Icons/DataPage/FileDownload.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Label Content="Загрузить"
+                                   Style="{DynamicResource LabelUsStyleVHCenter}"/>
+                    </StackPanel>
                 </StackPanel>
 
                 <Label Content="Сотрудники"
@@ -77,7 +93,7 @@
                                        Stretch="None"/>
                             </Button>
                         </Border>
-                        <Label Content="Сохранить в файле"
+                        <Label Content="Синхронизировать"
                                Style="{DynamicResource LabelUsStyleVHCenter}"/>
                     </StackPanel>
 
@@ -157,7 +173,8 @@
                               FontSize="16"
                               HorizontalAlignment="Center"
                               ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              x:Name="WorkersListView">
                         
                         <ListView.ContextMenu>
                             <ContextMenu>
@@ -228,11 +245,10 @@
         </Grid>
 
         <Grid Grid.Column="1">
-            <StackPanel Grid.Column="1"
-                        x:Name="RightStackPanelBorderInformation">
+            <StackPanel x:Name="RightStackPanelBorderInformation">
                 <Border Style="{DynamicResource WorkersRightBorder}"
                         Width="300" 
-                        Margin="0 20 0 20">
+                        Margin="0 90 0 20">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -417,7 +433,7 @@
                         </StackPanel>
 
                         <Grid Grid.Row="1"
-                              Margin="0 20 0 20">
+                              Margin="0 10 0 20">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -447,9 +463,9 @@
                                        Content="Информация"
                                        Margin="0 10 0 0"/>
 
-                                <ScrollViewer Margin="0 10 0 10"
+                                <ScrollViewer Margin="0 10 0 8"
                                               Visibility="Visible"
-                                              Height="400">
+                                              Height="390">
                                     <StackPanel>
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
                                                    FontSize="18"
@@ -558,6 +574,19 @@
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
                                                  Foreground="Black"/>
+
+                                        <Line Style="{DynamicResource LineinBorderInfoWorkers}"
+                                              Margin="20 0 0 6"/>
+                                        <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
+                                                   FontSize="24"
+                                                   Text="Заметки"
+                                                   Margin="0 6 0 0"/>
+                                        <TextBox Text="{Binding SelectedWorker.Description}"
+                                                 Style="{StaticResource WorkerValueTextBox}"
+                                                 TextWrapping="Wrap"
+                                                 Margin="0 6 0 0"
+                                                 Foreground="Black"
+                                                 Height="100"/>
                                     </StackPanel>
                                 </ScrollViewer>
                                 

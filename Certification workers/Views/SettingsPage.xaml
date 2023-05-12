@@ -27,8 +27,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Vertical"
->
+                <StackPanel Grid.Column="0"
+                            Orientation="Vertical">
                     <Label Content="Стиль программы"
                            Style="{DynamicResource LabelUsStyle}"
                            FontSize="24"
@@ -97,8 +97,31 @@
                         </Border>
                     </StackPanel>
 
-                </StackPanel>    
-                
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <StackPanel VerticalAlignment="Center"
+                                Width="230"
+                                Margin="0 30 0 0">
+                        <Border Style="{StaticResource TransparentBorderBlueColorButtonIcon4848Style}"
+                            HorizontalAlignment="Center" Margin="0 0 0 0">
+                            <Button Style="{StaticResource TransparentStyleButton}"
+                                    Command="{Binding OpenDirectoryDocument}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="/Resources/Icons/DataPage/Link.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+
+                        <TextBlock Text="        Открыть папку с использующимся файлом"
+                                   Style="{DynamicResource TextBlockUsStyleVHCenter}"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   FontSize="18"
+                                   Margin="0 4 0 0"
+                                   />
+                    </StackPanel>
+                </StackPanel>
             </Grid>
 
             <Border Grid.Row="2"

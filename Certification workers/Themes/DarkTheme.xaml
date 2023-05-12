@@ -4,7 +4,7 @@
     
     <!--MainWindow-->
     <Style TargetType="{x:Type Border}" x:Key="MainWindowBorderTheme">
-        <Setter Property="Background" Value="#FF2A4C6A"/>
+        <Setter Property="Background" Value="#FF3A2D54"/>
     </Style>
 
     <Style TargetType="{x:Type Border}" x:Key="LeftStackPanelBorder">
@@ -93,7 +93,14 @@
     </Style>
 
     <Style TargetType="{x:Type Border}" x:Key="WorkersRightBorder">
-        <Setter Property="Background" Value="#FF24335B"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF1B68B5"/>
+                    <GradientStop Color="#123" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="BorderThickness" Value="8"/>
     </Style>

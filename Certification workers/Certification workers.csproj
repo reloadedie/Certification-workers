@@ -9,10 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\AutoRenew.png" />
     <None Remove="Resources\Icons\DataPage\AddDocument.png" />
+    <None Remove="Resources\Icons\DataPage\FileDownload.png" />
     <None Remove="Resources\Icons\DayFlag.png" />
     <None Remove="Resources\Icons\FileOpen.png" />
-    <None Remove="Resources\Icons\Groups.png" />
     <None Remove="Resources\Icons\Link.png" />
     <None Remove="Resources\Icons\MainWindow\Data.png" />
     <None Remove="Resources\Icons\MainWindow\Info.png" />
@@ -31,7 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Icons\AutoRenew.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\DataPage\AddDocument.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\DataPage\FileDownload.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\DayFlag.png">
@@ -40,10 +47,7 @@
     <Resource Include="Resources\Icons\DataPage\FileOpen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Icons\Groups.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Icons\Link.png">
+    <Resource Include="Resources\Icons\DataPage\Link.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\MainWindow\Data.png">
@@ -95,6 +99,11 @@
 
   <ItemGroup>
     <Folder Include="Views\WorkersFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+    <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
   </ItemGroup>
 
 </Project>

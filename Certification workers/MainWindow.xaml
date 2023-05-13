@@ -159,7 +159,7 @@
 
                                 <TextBlock Text="Сотрудники"
                                            Margin="25,0,0,0"
-                                           Style="{StaticResource MainStyleMenuText}"/>
+                                           Style="{DynamicResource MainStyleMenuText}"/>
                             </StackPanel>
 
                             <ListViewItem.ToolTip>
@@ -176,22 +176,22 @@
                             <StackPanel Orientation="Horizontal"
                                     Width="230">
                                 <Button Command="{Binding GoToDataPage}" 
-                                    Height="48" Width="48"
-                                    Margin="7,0,0,0"
-                                    Style="{StaticResource TransparentStyleButton}">
+                                        Height="48" Width="48"
+                                        Margin="7,0,0,0"
+                                        Style="{StaticResource TransparentStyleButton}">
                                     <Image Source="/Resources/Icons/MainWindow/Data.png"
                                            Stretch="None"/>
                                 </Button>
 
                                 <TextBlock Text="Данные"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
+                                           Margin="25,0,0,0"
+                                           Style="{DynamicResource MainStyleMenuText}"/>
                             </StackPanel>
 
                             <ListViewItem.ToolTip>
                                 <ToolTip x:Name="ToolTipData"
-                                     Content="Экспорт/импорт" Width="150"
-                                     Style="{StaticResource ToolTipStyle}"/>
+                                         Content="Экспорт/импорт" Width="150"
+                                         Style="{StaticResource ToolTipStyle}"/>
                             </ListViewItem.ToolTip>
                         </ListViewItem>
 
@@ -202,22 +202,22 @@
                             <StackPanel Orientation="Horizontal"
                                     Width="230">
                                 <Button Command="{Binding GoToInfoPage}" 
-                                    Height="48" Width="48"
-                                    Margin="7,0,0,0"
-                                    Style="{StaticResource TransparentStyleButton}">
+                                        Height="48" Width="48"
+                                        Margin="7,0,0,0"
+                                        Style="{StaticResource TransparentStyleButton}">
                                     <Image Source="/Resources/Icons/MainWindow/Info.png"
                                        Stretch="None"/>
                                 </Button>
 
                                 <TextBlock Text="Информация"
-                                       Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
+                                           Margin="25,0,0,0"
+                                           Style="{DynamicResource MainStyleMenuText}"/>
                             </StackPanel>
 
                             <ListViewItem.ToolTip>
                                 <ToolTip x:Name="ToolTipInformation"
-                                     Content="О программе" Width="150"
-                                     Style="{StaticResource ToolTipStyle}"/>
+                                         Content="О программе" Width="150"
+                                         Style="{StaticResource ToolTipStyle}"/>
                             </ListViewItem.ToolTip>
                         </ListViewItem>
                     </Grid>
@@ -232,7 +232,7 @@
                             <Button Command="{Binding GoToSettingsPage}" 
                                     Height="48" Width="48"
                                     Margin="7,0,0,0"
-                                    Style="{StaticResource TransparentStyleButton}">
+                                    Style="{DynamicResource TransparentStyleButton}">
                                 <Image Source="/Resources/Icons/MainWindow/Settings.png"
                                        Stretch="None"/>
                             </Button>
@@ -241,7 +241,7 @@
                                 <TextBlock Text="Настройки"
                                        FontSize="20"
                                        Margin="25,0,0,0"
-                                       Style="{StaticResource MainStyleMenuText}"/>
+                                       Style="{DynamicResource MainStyleMenuText}"/>
                                 <TextBlock Text="программы"
                                            FontSize="18"
                                            Margin="25,0,0,0"

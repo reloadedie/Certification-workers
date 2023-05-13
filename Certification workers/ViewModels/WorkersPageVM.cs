@@ -15,7 +15,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Media3D;
 
-namespace Certification_workers.ViewModels.WorkersVMFolder
+namespace Certification_workers.ViewModels
 {
     public class WorkersPageVM : BaseNotify
     {
@@ -328,52 +328,49 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
                        worker.GroupSpeciality.Contains(_workersGroupSpecialityString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Category.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase) &&
-                    // worker.IsCertified.Contains(_workersFullNameString, StringComparison.InvariantCultureIgnoreCase) &&
+                       // worker.IsCertified.Contains(_workersFullNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.StringDateCertified.Contains(_workersDateCertifiedString, StringComparison.InvariantCultureIgnoreCase);
-                    // bth.Contains(WorkersDateCertifiedFilterString, StringComparison.Ordinal);
+                // bth.Contains(WorkersDateCertifiedFilterString, StringComparison.Ordinal);
             }
             return false;
         }
 
         #endregion
 
-
-        IExcelDataReader edr;
         public string FilePath = string.Empty;
-        string path = @"C:\progs\ListExcel.xlsx";
+        string path = @"C:\progs\ListExcelTestWITHOUT.csv";
 
         public async Task OpenExcelFile()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "EXCEL Files (*.xlsx)|*.xlsx|EXCEL Files 2003 (*.xls)|*.xls|All files (*.*)|*.*";
+            //openFileDialog.Filter = "CSV файлы (*.csv)|EXCEL файлы (*.xlsx)|*.xlsx|EXCEL файлы 2003 (*.xls)|*.xls|все файлы (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
-
-                var info = new FileInfo(openFileDialog.FileName);
-                FilePath = Environment.CurrentDirectory + info;
-
+                FilePath = new FileInfo(openFileDialog.FileName).ToString();
                 try
                 {
-                    var rows = File.ReadAllLines(path);
-                    for (int i = 0; i < rows.Length; i++)
+                    var rows = File.ReadAllLines(FilePath);
+                    for (int i = 1; i < rows.Length; i++)
                     {
-                        var cols = rows[i].Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                        var columns = rows[i].Split(new char[] { ';' }, 
+                                      StringSplitOptions.RemoveEmptyEntries);
 
                         ListWorkers.Add(new Worker
                         {
-                            IdCode = cols[0],
-                            Name = cols[1],
-                            LastName = cols[2],
-                            Patronymic = cols[3],
-                            FullName = cols[4],
-                            Organization = cols[5],
-                            GroupSpeciality = cols[6],
-                            PhoneNumber = cols[7],
-                            Category = cols[8],
-                            IsCertifiedString = cols[9],
-                            StringDateCertified = cols[10]
+                            IdCode = columns[0],
+                            Name = columns[1],
+                            LastName = columns[2],
+                            Patronymic = columns[3],
+                            FullName = columns[4],
+                            Organization = columns[5],
+                            GroupSpeciality = columns[6],
+                            Email = columns[7],
+                            PhoneNumber = columns[8],
+                            Category = columns[9],
+                            IsCertifiedString = columns[10],
+                            StringDateCertified = columns[11],
+                            Description = columns[12]
                         });
-                        ListWorkers = new ObservableCollection<Worker>();
                     }
                 }
                 catch (Exception ex)
@@ -391,7 +388,7 @@ namespace Certification_workers.ViewModels.WorkersVMFolder
             {
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

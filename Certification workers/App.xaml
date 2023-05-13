@@ -8,7 +8,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/LightTheme.xaml" x:Name="LightThemeStyle"/>
                 <ResourceDictionary Source="Themes/DarkTheme.xaml" x:Name="DarkThemeStyle"/>
-                <ResourceDictionary Source="Themes/OtherStyles.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

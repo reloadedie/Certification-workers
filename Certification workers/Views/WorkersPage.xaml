@@ -9,15 +9,8 @@
       MinWidth="900" MinHeight="500"
       Title="WorkersPage">
 
-    <Page.Resources>
-        <Style TargetType="{x:Type Border}" x:Key="BorderOpenSearch">
-            <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Background" Value="#FF13508D"/>
-        </Style>
 
-    </Page.Resources>
-
-    <Grid Background="#FF3A2D54">
+    <Grid Style="{DynamicResource WorkersOffGridBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
@@ -317,7 +310,8 @@
                             </ToggleButton>
 
                             <Border Style="{DynamicResource BorderOpenSearch}"
-                                    Margin="5 0 5 0">
+                                    Background="#FF683B9A"
+                                    Margin="10 0 10 0">
 
                                 <ScrollViewer Visibility="Visible"
                                               Height="420"
@@ -447,7 +441,7 @@
                                            Margin="0 0 0 0"
                                            HorizontalAlignment="Center"
                                            TextWrapping="Wrap"/>
-                                <TextBox Text="{Binding WorkersNameFilterString, UpdateSourceTrigger=PropertyChanged}"
+                                <TextBox Text="{Binding WorkersFullNameFilterString, UpdateSourceTrigger=PropertyChanged}"
                                          Style="{StaticResource SearchWorkerTextBox}"
                                          Margin="0 6 0 0"
                                          Foreground="Black"/>

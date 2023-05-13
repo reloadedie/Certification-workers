@@ -8,10 +8,11 @@
       d:DesignHeight="550" d:DesignWidth="800"
       Title="MainPage">
 
-    <Border Style="{DynamicResource MainPageCenterBorder}">
+    <Border Style="{DynamicResource MainPageCenterBorder}" 
+            Background="#FFB4C0AB">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="140"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -23,28 +24,16 @@
                    FontSize="46"
                    Margin="0 30 0 0"/>
 
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <Border Grid.Row="1" Grid.Column="1"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Width="260" Height="60"
-                            Style="{StaticResource BorderCorner1Button}">
-                    <Border Style="{StaticResource BorderCorner2Button}">
-                        <Button Content="" 
-                                Style="{StaticResource TransparentStyleButtonIn2CornerBorders}"/>
-                    </Border>
-                </Border>
-            </Grid>
+            <StackPanel Grid.Row="1">
+                <Label Content="Аттестация медицинских работников"
+                       Style="{DynamicResource LabelUsStyleVHCenter}"
+                       FontSize="34"/>
+                
+                <Label Content="1) Воспользуйтесь панелью слева, чтобы переключаться по страницам"
+                       Style="{DynamicResource LabelUsStyleVHCenter}"
+                       FontSize="22"
+                       Margin="0 20 0 0"/>
+            </StackPanel>
 
             <Border Grid.Row="2"
                         VerticalAlignment="Bottom"

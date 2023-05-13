@@ -8,7 +8,6 @@ namespace Certification_workers.Models
 {
     public class Worker
     {
-        //public int? Id { get; set; }
         public string? IdCode { get; set; }
         public string? FullName { get; set; }
         public string? Name { get; set; }

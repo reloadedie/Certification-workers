@@ -134,8 +134,8 @@
                     Margin="0 0 0 10">
                 <Border Style="{StaticResource BorderCorner2Button}">
                     <Button Content="О программе"
-                                Command="{Binding OpenInfoWindow}"
-                                Style="{StaticResource TransparentStyleButtonIn2CornerBorders}">
+                            Click="OpenInfoWindow"
+                            Style="{StaticResource TransparentStyleButtonIn2CornerBorders}">
 
                     </Button>
                 </Border>

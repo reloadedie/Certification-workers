@@ -5,23 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Certification_workers.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="900"
+      d:DesignHeight="550" d:DesignWidth="900"
       Title="DataPage">
 
     <Page.Resources>
-        <Style TargetType="{x:Type Border}" x:Key="DataPageMainBorderStyle">
-            <Setter Property="CornerRadius" Value="20"/>
-            <Setter Property="Background" Value="#FF5B40A6"/>
-            <Setter Property="Width" Value="850"/>
-            <Setter Property="Height" Value="400"/>
-        </Style>
-
-        <Style TargetType="{x:Type Border}" x:Key="TransparentBorderBlueColorButtonIcon4848Style">
-            <Setter Property="CornerRadius" Value="5"/>
-            <Setter Property="Background" Value="#FF4D96DF"/>
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="Height" Value="50"/>
-        </Style>
+       
         
     </Page.Resources> 
     
@@ -29,7 +17,7 @@
             HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="110"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -37,79 +25,35 @@
                    Style="{DynamicResource LabelUsStyleVHCenter}"
                    FontSize="34"/>
 
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                
-                <StackPanel Grid.Column="0"
-                            Orientation="Vertical">
-
-                    <StackPanel Orientation="Vertical"
-                                VerticalAlignment="Center">
-                        <Border Style="{StaticResource TransparentBorderBlueColorButtonIcon4848Style}"
-                                HorizontalAlignment="Center" Margin="0 0 0 0">
-                            <Button Style="{StaticResource TransparentStyleButton}"
-                                    Command="{Binding DowloadDocument}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/Resources/Icons/DataPage/FileDownload.png"/>
-                                </Button.Background>
-                            </Button>
-                        </Border>
-
-                        <Label Content="команда с файлом"
-                               Style="{DynamicResource LabelUsStyleVHCenter}"
-                               FontSize="20"/>
-                    </StackPanel>
-
-                   
-
-                </StackPanel>
-
-                <StackPanel Grid.Column="1"
-                            Orientation="Vertical">
-
-                    <StackPanel Orientation="Vertical"
-                                VerticalAlignment="Center">
-                        <Border Style="{StaticResource TransparentBorderBlueColorButtonIcon4848Style}"
-                                HorizontalAlignment="Center" Margin="0 0 0 0">
-                            <Button Style="{StaticResource TransparentStyleButton}"
-                                Command="{Binding Document}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/Resources/Icons/DataPage/AddDocument.png"/>
-                                </Button.Background>
-                            </Button>
-                        </Border>
-
-                        <Label Content="..."
-                               Style="{DynamicResource LabelUsStyleVHCenter}"
-                               FontSize="20"/>
-                    </StackPanel>
-
-                    <StackPanel VerticalAlignment="Center"
-                                Width="230"
-                                Margin="0 30 0 0">
-                        <Border Style="{StaticResource TransparentBorderBlueColorButtonIcon4848Style}"
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Left"
+                        Margin="50 20 0 0">
+                <Border Style="{StaticResource TransparentBorderBlueColorButtonIcon4848Style}"
                             HorizontalAlignment="Center" Margin="0 0 0 0">
-                            <Button Style="{StaticResource TransparentStyleButton}"
-                                    Command="{Binding Document}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/Resources/Icons/WorkersPage/Save.png"
+                    <Button Style="{StaticResource TransparentStyleButton}"
+                            Click="OpenExcel_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Resources/Icons/WorkersPage/Save.png"
                                                 Stretch="None"/>
-                                </Button.Background>
-                            </Button>
-                        </Border>
+                        </Button.Background>
+                    </Button>
+                </Border>
 
-                        <TextBlock Text="..."
+                <TextBlock Text="прочитать файл"
                                    Style="{DynamicResource TextBlockUsStyleVHCenter}"
                                    TextWrapping="Wrap"
                                    HorizontalAlignment="Center"
                                    FontSize="18"
                                    />
-                    </StackPanel>
-
-                </StackPanel>
+            </StackPanel>
+            
+            <Grid Grid.Row="1">
+                
+                <DataGrid Margin="10"
+                          ItemsSource="{Binding}"
+                          x:Name="DataGridCheckData">
+                    
+                </DataGrid>
             </Grid>
         </Grid>
     </Border>

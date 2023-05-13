@@ -1,5 +1,4 @@
 ﻿using Certification_workers.ViewModels;
-using Certification_workers.ViewModels.InfoVMFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +24,12 @@ namespace Certification_workers.Views
         public InfoPage()
         {
             InitializeComponent();
-            DataContext = new InfoPageVM();
+        }
+
+        private void OpenInfoWindow(object sender, RoutedEventArgs e)
+        {
+            InfoWindow infoWindow = new InfoWindow();
+            infoWindow.Show();
         }
     }
 }

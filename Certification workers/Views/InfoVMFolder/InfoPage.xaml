@@ -34,11 +34,28 @@
                                Margin="5"/>
                     <TextBox Text="reloadedie@mail.ru" IsReadOnly="True"
                              Margin="5"
-                             FontSize="18"
+                             FontSize="20"
                              Width="200"
                              Foreground="Black"
-                             HorizontalAlignment="Left"
-                             Height="26"/>
+                             HorizontalAlignment="Left"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Автор: Кротов Кирилл Геннадьевич"
+                               FontSize="20"
+                               TextWrapping="Wrap"
+                               Style="{DynamicResource TextBlockUsStyleVHCenter}"/>
+                    
+                    <TextBlock Text="2023 год (4 курс ППК)"
+                               FontSize="20"
+                               TextWrapping="Wrap"
+                               Style="{DynamicResource TextBlockUsStyleVHCenter}"/>
+                    <TextBlock Text="''Информационные системы и программирование''"
+                               FontSize="20"
+                               TextWrapping="Wrap"
+                               Style="{DynamicResource TextBlockUsStyleVHCenter}"/>
                 </StackPanel>
             </Grid>
 
@@ -52,7 +69,7 @@
                         Margin="0 0 0 10">
                 <Border Style="{DynamicResource BorderCorner2Button}">
                     <Button Content="О программе"
-                            Command="{Binding OpenInfoWindow}"
+                            Click="OpenInfoWindow"
                             Style="{DynamicResource TransparentStyleButtonIn2CornerBorders}">
 
                     </Button>

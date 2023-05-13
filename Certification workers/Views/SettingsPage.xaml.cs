@@ -62,5 +62,11 @@ namespace Certification_workers.Views
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
 
         }
+
+        private void OpenInfoWindow(object sender, RoutedEventArgs e)
+        {
+            InfoWindow infoWindow = new InfoWindow();
+            infoWindow.Show();
+        }
     }
 }

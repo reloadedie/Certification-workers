@@ -1,5 +1,4 @@
 ﻿using Certification_workers.ViewModels;
-using Certification_workers.ViewModels.InfoVMFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;

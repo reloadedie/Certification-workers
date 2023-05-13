@@ -66,6 +66,10 @@
 
     <!--WorkersPage-->
 
+    <Style TargetType="{x:Type Grid}" x:Key="WorkersOffGridBackground">
+        <Setter Property="Background" Value="#FF3A2D54"/>
+    </Style>
+    
     <Style TargetType="{x:Type Border}" x:Key="BorderListWorkers">
         <Setter Property="Background" Value="#FF445D9E"/>
         <Setter Property="CornerRadius" Value="15"/>
@@ -134,10 +138,27 @@
         <Setter Property="X1" Value="20"/>
         <Setter Property="X2" Value="260"/>
     </Style>
+
+    <Style TargetType="{x:Type Border}" x:Key="BorderOpenSearch">
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Background" Value="#FF13508D"/>
+    </Style>
     <!--WorkersPage-->
 
     <!--DataPage-->
+    <Style TargetType="{x:Type Border}" x:Key="DataPageMainBorderStyle">
+        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="Background" Value="#FF5B40A6"/>
+        <Setter Property="Width" Value="850"/>
+        <Setter Property="Height" Value="500"/>
+    </Style>
 
+    <Style TargetType="{x:Type Border}" x:Key="TransparentBorderBlueColorButtonIcon4848Style">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="#FF4D96DF"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="50"/>
+    </Style>
     <!--DataPage-->
 
     <!--SettingsPage-->
@@ -159,8 +180,8 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Width" Value="600"/>
-        <Setter Property="Height" Value="300"/>
+        <Setter Property="Width" Value="760"/>
+        <Setter Property="Height" Value="340"/>
     </Style>
     <!--InfoPage-->
 
@@ -199,6 +220,81 @@
     <Style TargetType="{x:Type Button}" x:Key="TransparentStyleButton">
         <Setter Property="BorderThickness" Value="0,0,0,0"/>
         <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+
+    <ImageBrush x:Key="ToggleButtonMouseOver"
+                ImageSource="/Resources/Icons/MainWindow/MenuButton.png"/>
+
+    <ImageBrush x:Key="ToggleButtonAround"
+                ImageSource="/Resources/Icons/MainWindow/MenuButton1.png"/>
+
+    <Style TargetType="{x:Type ToggleButton}" x:Key="ToggleButtonMainWindowStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background"
+                                    TargetName="border"
+                                    Value="{StaticResource ToggleButtonMouseOver}"/>
+                            <Setter Property="BorderBrush"
+                                    TargetName="border"
+                                    Value="{StaticResource ToggleButtonMouseOver}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Background"
+                                    TargetName="border"
+                                    Value="{StaticResource ToggleButtonMouseOver}"/>
+                            <Setter Property="BorderBrush"
+                                    TargetName="border"
+                                    Value="{StaticResource ToggleButtonMouseOver}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ToggleButton}" x:Key="ToggleButtonWorkersRightStackPanel">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background"
+                                    TargetName="border"
+                                    Value="{StaticResource ToggleButtonMouseOver}"/>
+                            <Setter Property="BorderBrush"
+                                    TargetName="border"
+                                    Value="{StaticResource ToggleButtonMouseOver}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Background"
+                                    TargetName="border"
+                                    Value="{StaticResource ToggleButtonMouseOver}"/>
+                            <Setter Property="BorderBrush"
+                                    TargetName="border"
+                                    Value="{StaticResource ToggleButtonMouseOver}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

@@ -17,13 +17,12 @@ namespace Certification_workers.Views
     /// </summary>
     public partial class WorkersPage : Page
     {
-        IExcelDataReader edr;
-
         public WorkersPage()
         {
             InitializeComponent();
             DataContext = new WorkersPageVM(null);
         }
+
         
         public WorkersPage(Worker worker)
         {

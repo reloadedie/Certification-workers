@@ -93,12 +93,6 @@
         <Setter Property="Height" Value="48"/>
     </Style>
 
-    <Style TargetType="{x:Type ListView}" x:Key="ListViewWorkers">
-        <Setter Property="Background" Value="LightGreen"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="BorderThickness" Value="0 0 0 0"/>
-    </Style>
-
     <Style TargetType="{x:Type Border}" x:Key="WorkersRightBorder">
         <Setter Property="Background">
             <Setter.Value>

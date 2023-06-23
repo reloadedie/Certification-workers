@@ -5,19 +5,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Certification_workers.LocalDB
 {
-    public partial class CetrificationWorkersContext : DbContext
+    public partial class CertificationWorkersContext : DbContext
     {
-        public CetrificationWorkersContext()
+        public CertificationWorkersContext()
         {
         }
 
-        public CetrificationWorkersContext(DbContextOptions<CetrificationWorkersContext> options)
+        public CertificationWorkersContext(DbContextOptions<CertificationWorkersContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Certified> Certifieds { get; set; } = null!;
-        public virtual DbSet<Organization> Organizations { get; set; } = null!;
+        public virtual DbSet<TypeCertified> TypeCertifieds { get; set; } = null!;
         public virtual DbSet<Worker> Workers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -25,28 +24,19 @@ namespace Certification_workers.LocalDB
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-KIC205I\\SQLEXPRESS;Database=CetrificationWorkers;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-KIC205I\\SQLEXPRESS;Database=CertificationWorkers;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Certified>(entity =>
+            modelBuilder.Entity<TypeCertified>(entity =>
             {
-                entity.ToTable("Certified");
+                entity.ToTable("TypeCertified");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.TypeCertifiedName).HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<Organization>(entity =>
-            {
-                entity.ToTable("Organization");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.OrganizationName)
+                entity.Property(e => e.TypeName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
@@ -61,7 +51,9 @@ namespace Certification_workers.LocalDB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DateCertified).HasColumnType("date");
+                entity.Property(e => e.DateCertified)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Description).IsUnicode(false);
 
@@ -69,21 +61,21 @@ namespace Certification_workers.LocalDB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FullName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.GroupSpeciality)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdOrganization).HasColumnName("idOrganization");
+                entity.Property(e => e.IdTypeCertified).HasColumnName("idTypeCertified");
 
                 entity.Property(e => e.LastName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.OrganizationName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -95,17 +87,11 @@ namespace Certification_workers.LocalDB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdCertifiedNavigation)
+                entity.HasOne(d => d.IdTypeCertifiedNavigation)
                     .WithMany(p => p.Workers)
-                    .HasForeignKey(d => d.IdCertified)
+                    .HasForeignKey(d => d.IdTypeCertified)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Worker_Certified");
-
-                entity.HasOne(d => d.IdOrganizationNavigation)
-                    .WithMany(p => p.Workers)
-                    .HasForeignKey(d => d.IdOrganization)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Worker_Organization");
+                    .HasConstraintName("FK_Worker_TypeCertified");
             });
 
             OnModelCreatingPartial(modelBuilder);

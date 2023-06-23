@@ -12,19 +12,10 @@ using System.Windows.Controls;
 
 namespace Certification_workers
 {
-    public class MainWindowVM : INotifyPropertyChanged
-    {
-        void SignalChanged([CallerMemberName] string prop = null) =>
-           PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        //public Page CurrentPage { get; set; }
-        //CurrentPage = new WorkersPage(); SignalChanged("CurrentPage");
-
+    public class MainWindowVM : BaseNotify
+    { 
         public CoreCommand MainPageCommand { get; set; }
         public CoreCommand GoToWorkersPage { get; set; }
-        public CoreCommand GoToSearchPage { get; set; }
         public CoreCommand GoToDataPage { get; set; }
         public CoreCommand GoToInfoPage { get; set; }
 
@@ -40,11 +31,6 @@ namespace Certification_workers
             GoToWorkersPage = new CoreCommand(() => 
             {
                 MainWindow.MainNavigate(new WorkersPage());
-            });
-
-            GoToSearchPage = new CoreCommand(() => 
-            {
-                //MainWindow.MainNavigate(new SearchPage());
             });
 
             GoToDataPage = new CoreCommand(() => 

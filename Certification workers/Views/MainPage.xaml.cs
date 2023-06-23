@@ -27,10 +27,5 @@ namespace Certification_workers.Views
             DataContext = new MainPageVM();
         }
 
-        private void Button_ClickOpenWindowInfo(object sender, RoutedEventArgs e)
-        {
-            InfoWindow infoWindow = new InfoWindow();
-            infoWindow.Show();
-        }
     }
 }

@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:Certification_workers.Views"
         mc:Ignorable="d"
         Background="{x:Null}"
-        Title="InfoWindow" 
-        Height="800" Width="960"
-        MinHeight="800" MinWidth="900">
-    <Border CornerRadius="20" Style="{DynamicResource InfoWindowBorderTheme}">
+        Title="" 
+        WindowStartupLocation="CenterScreen"
+        MinHeight="800" MinWidth="900"
+        Height="800" Width="960">
+    <Border CornerRadius="20" 
+            Style="{DynamicResource InfoWindowBorderTheme}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>

@@ -50,17 +50,6 @@
                             HorizontalAlignment="Right" 
                             VerticalAlignment="Top"
                             Margin="0 10 10 0">
-                    <StackPanel Orientation="Vertical">
-                        <Border Style="{DynamicResource TransparentBorderButtonIcon4848Style}">
-                            <Button Command="{Binding SaveWorkers}"
-                                    Style="{StaticResource TransparentButton4848Usual}">
-                                <Image Source="/Resources/Icons/WorkersPage/Save.png"
-                                       Stretch="None"/>
-                            </Button>
-                        </Border>
-                        <Label Content="Синхронизировать"
-                               Style="{DynamicResource LabelUsStyleVHCenter}"/>
-                    </StackPanel>
 
                     <StackPanel Orientation="Vertical">
                         <Border Style="{DynamicResource TransparentToggleButtonButtonWorkersRightBorder}">
@@ -134,8 +123,9 @@
                 <Border BorderThickness="5">
                     <ListView ItemsSource="{Binding ListWorkers}"
                               SelectedItem="{Binding SelectedWorker}"
-                              Style="{DynamicResource ListViewWorkers}"
+                              Foreground="Black"                            
                               FontSize="16"
+                              BorderThickness="0,0,0,0"
                               HorizontalAlignment="Center"
                               ScrollViewer.HorizontalScrollBarVisibility="Visible"
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -144,8 +134,8 @@
                         <ListView.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Добавить" Command="{Binding AddWorker}"/>
-                                <MenuItem Header="Редактировать" Command="{Binding EditWorker}"/>
-                                <MenuItem Header="Удалить" Command="{Binding DeleteWorker}"/>
+                                <MenuItem Header="Редактировать" Command="{Binding EditSelectedWorker}"/>
+                                <MenuItem Header="Удалить" Command="{Binding DeleteSelectedWorker}"/>
                             </ContextMenu>
                         </ListView.ContextMenu>
 
@@ -168,13 +158,9 @@
                                                     Width="Auto"
                                                     DisplayMemberBinding="{Binding Patronymic}"/>
 
-                                    <GridViewColumn Header="Полное имя"
-                                                    Width="Auto"
-                                                    DisplayMemberBinding="{Binding FullName}"/>
-
                                     <GridViewColumn Header="Организация"
                                                     Width="Auto"
-                                                    DisplayMemberBinding="{Binding IdOrganizationNavigation.OrganizationName}"/>
+                                                    DisplayMemberBinding="{Binding OrganizationName}"/>
 
                                     <GridViewColumn Header="Специальность"
                                                     Width="Auto"
@@ -182,7 +168,7 @@
 
                                     <GridViewColumn Header="Почта"
                                                     Width="Auto"
-                                                    DisplayMemberBinding="{Binding Email}"/>
+                                                    DisplayMemberBinding="{Binding Email}"/>    
 
                                     <GridViewColumn Header="Телефон"
                                                     Width="Auto"
@@ -195,7 +181,7 @@
 
                                     <GridViewColumn Header="Сертифицирован"
                                                     Width="Auto"
-                                                    DisplayMemberBinding="{Binding IdCertifiedNavigation.TypeCertifiedName}"/>
+                                                    DisplayMemberBinding="{Binding IdTypeCertifiedNavigation.TypeName}"/>
 
                                     <GridViewColumn Header="Дата аттестации"
                                                     Width="Auto"
@@ -407,7 +393,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             
-                            <StackPanel Grid.Row="0">
+                            <!--<StackPanel Grid.Row="0">
                                 <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
                                            FontSize="18"
                                            Text="Поиск сотрудника по ФИО"
@@ -419,7 +405,7 @@
                                          Margin="0 6 0 0"
                                          Foreground="Black"/>
 
-                            </StackPanel>
+                            </StackPanel>-->
 
                             <StackPanel Grid.Row="1">
                                 <Line Style="{DynamicResource LineinBorderInfoWorkers}"
@@ -438,9 +424,10 @@
                                                    FontSize="18"
                                                    Text="Код идентификации"
                                                    Margin="0 6 0 0"/>
-                                        <TextBox Text="{Binding SelectedWorker.IdCode}"
+                                        <TextBox Text="{Binding SelectedWorker.Id}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -450,6 +437,7 @@
                                         <TextBox Text="{Binding SelectedWorker.Name}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -459,6 +447,7 @@
                                         <TextBox Text="{Binding SelectedWorker.LastName}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -468,6 +457,7 @@
                                         <TextBox Text="{Binding SelectedWorker.Patronymic}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -477,6 +467,7 @@
                                         <TextBox Text="{Binding SelectedWorker.FullName}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -486,6 +477,7 @@
                                         <TextBox Text="{Binding SelectedWorker.Organization}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -495,6 +487,7 @@
                                         <TextBox Text="{Binding SelectedWorker.Organization}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -504,6 +497,7 @@
                                         <TextBox Text="{Binding SelectedWorker.Email}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -513,6 +507,7 @@
                                         <TextBox Text="{Binding SelectedWorker.PhoneNumber}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -522,6 +517,7 @@
                                         <TextBox Text="{Binding SelectedWorker.Category}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -531,6 +527,7 @@
                                         <TextBox Text="{Binding SelectedWorker.IsCertified}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
@@ -540,6 +537,7 @@
                                         <TextBox Text="{Binding SelectedWorker.StringDateCertified}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"/>
 
                                         <Line Style="{DynamicResource LineinBorderInfoWorkers}"
@@ -552,6 +550,7 @@
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  TextWrapping="Wrap"
                                                  Margin="0 6 0 0"
+                                                 IsReadOnly="True"
                                                  Foreground="Black"
                                                  Height="100"/>
                                     </StackPanel>

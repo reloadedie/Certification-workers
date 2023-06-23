@@ -25,25 +25,31 @@
 
             <StackPanel Grid.Row="1">
                 <Label Content="Аттестация медицинских работников"
+                       FontWeight="Light"
                        Style="{DynamicResource LabelUsStyleVHCenter}"
                        FontSize="34"/>
                 
                 <Label Content="1) Воспользуйтесь панелью слева, чтобы переключаться по страницам"
                        Style="{DynamicResource LabelUsStyleVHCenter}"
-                       FontSize="22"
+                       FontSize="22" FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+
+                <Label Content="2) Нажмите кнопку ниже ''О программе'' "
+                       Style="{DynamicResource LabelUsStyleVHCenter}"
+                       FontSize="22" FontWeight="Medium"
                        Margin="0 20 0 0"/>
             </StackPanel>
 
             <Border Grid.Row="2"
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Center"
-                        Width="260" Height="60"
-                        Style="{StaticResource BorderCorner1Button}"
+                        Width="180" Height="60"
+                        Style="{StaticResource Border1Corner11Button}"
                         Margin="0 0 0 20">
-                <Border Style="{StaticResource BorderCorner2Button}">
-                    <Button Content="Инструкция к программе" 
-                                Click="Button_ClickOpenWindowInfo" 
-                                Style="{StaticResource TransparentStyleButtonIn2CornerBorders}"/>
+                <Border Style="{StaticResource Border2Corner11Button}">
+                    <Button Content="Опрограмме" 
+                            Command="{Binding GoToInfoPage}"
+                            Style="{StaticResource ButtonInCornerRadius11Border}"/>
                 </Border>
             </Border>
         </Grid>

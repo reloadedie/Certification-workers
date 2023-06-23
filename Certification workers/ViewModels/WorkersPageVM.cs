@@ -21,10 +21,10 @@ namespace Certification_workers.ViewModels
 {
     public class WorkersPageVM : BaseNotify
     {
-        
-        CetrificationWorkersContext db = new CetrificationWorkersContext();
-        public List<Worker> ListWorkers { get; set; }
+        CertificationWorkersContext db = new CertificationWorkersContext();
 
+        public List<Worker> ListWorkers { get; set; }
+        
         private Worker selectedWorker;
         public Worker SelectedWorker
         {
@@ -36,24 +36,22 @@ namespace Certification_workers.ViewModels
             }
         }
         
-
         public CoreCommand AddWorker { get; set; }
         public CoreCommand EditSelectedWorker { get; set; }
         public CoreCommand DownloadFile { get; set; }
-        public CoreCommand DeleteWorker { get; set; }
+        public CoreCommand DeleteSelectedWorker { get; set; }
 
-        
         public WorkersPageVM(Worker worker)
         {
             ListWorkers = new List<Worker>();
             LoadWorkersFromDB();
             SelectedWorker = worker;
 
-            WorkersCollectionView = CollectionViewSource.GetDefaultView(ListWorkers);
-           // WorkersCollectionView.Filter = ShortFilterWorkers;
-           // WorkersCollectionView.Filter = LongFilterWorkers;
-            WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Ascending));
 
+            WorkersCollectionView = CollectionViewSource.GetDefaultView(ListWorkers);
+            //WorkersCollectionView.Filter = FilterWorkers;
+            WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Ascending));
+            
             //commands
 
             #region
@@ -66,10 +64,11 @@ namespace Certification_workers.ViewModels
 
             EditSelectedWorker = new CoreCommand(() =>
             {
-
+                EditWorkerWindow editWorkerWindow = new EditWorkerWindow(SelectedWorker);
+                editWorkerWindow.ShowDialog();
             });
 
-            DeleteWorker = new CoreCommand(() =>
+            DeleteSelectedWorker = new CoreCommand(() =>
             {
                 if (MessageBox.Show("Вы точно хотите удалить?", "Вопрос",
                                      MessageBoxButton.YesNo,
@@ -79,47 +78,16 @@ namespace Certification_workers.ViewModels
                 }
                 else
                 {
-                    ListWorkers.Remove(SelectedWorker);
+                    //ListWorkers.Remove(SelectedWorker);
                 }
             });
 
             #endregion
-
         }
 
         public ICollectionView WorkersCollectionView { get; set; }
 
-        // fullName filter
-        #region
-
-        private string _workersFullNameString = string.Empty;
-        public string WorkersFullNameFilterString
-        {
-            get
-            {
-                return _workersFullNameString;
-            }
-            set
-            {
-                _workersFullNameString = value;
-                OnPropertyChanged(nameof(WorkersFullNameFilterString));
-                WorkersCollectionView.Refresh();
-            }
-        }
-
-        private bool ShortFilterWorkers(object obj)
-        {
-            /*
-            if (obj is Worker worker)
-            {
-                return worker.FullName.Contains(_workersFullNameString, StringComparison.InvariantCultureIgnoreCase);
-            }
-            */
-            return false;
-        }
-        #endregion
-
-        //more filters
+        //filters
         #region
 
         private string _workersNameString = string.Empty;
@@ -257,12 +225,12 @@ namespace Certification_workers.ViewModels
             }
         }
 
-        private bool LongFilterWorkers(object obj)
+        private bool FilterWorkers(object obj)
         {
+            /*
             if (obj is Worker worker)
             {
                 // string bth = worker.DateCertified.ToString();
-                /*
                 return worker.Name.Contains(_workersNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.LastName.Contains(_workersLastNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Patronymic.Contains(_workersPatronymicString, StringComparison.InvariantCultureIgnoreCase) &&
@@ -271,11 +239,11 @@ namespace Certification_workers.ViewModels
                        worker.GroupSpeciality.Contains(_workersGroupSpecialityString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Category.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase);
-                */
+                
                 // worker.IsCertified.Contains(_workersFullNameString, StringComparison.InvariantCultureIgnoreCase) &&
                 // bth.Contains(WorkersDateCertifiedFilterString, StringComparison.Ordinal);
             }
-
+            */
             return false;
         }
 
@@ -285,7 +253,7 @@ namespace Certification_workers.ViewModels
         {
             try
             {
-                ListWorkers = new List<Worker>(db.Workers.Include(s => s.IdOrganizationNavigation).ToList());
+                ListWorkers = new List<Worker>(db.Workers.Include(s => s.IdTypeCertifiedNavigation).ToList());
             }
             catch (Exception e)
             {
@@ -293,6 +261,6 @@ namespace Certification_workers.ViewModels
             }
 
         }
-
     }
+
 }

@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Themes/DarkTheme.xaml" x:Name="DarkThemeStyle"/>
 
             </ResourceDictionary.MergedDictionaries>
+            
         </ResourceDictionary>
         
     </Application.Resources>

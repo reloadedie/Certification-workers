@@ -18,7 +18,8 @@
 
             <Label Content="Данные" 
                    Style="{DynamicResource LabelUsStyleVHCenter}"
-                   FontSize="34"/>
+                   FontWeight="Light"
+                   FontSize="54"/>
 
             <StackPanel Orientation="Vertical"
                         HorizontalAlignment="Left"
@@ -29,14 +30,28 @@
                     <Image Source="/Resources/Icons/WorkersPage/Save.png"/>
                 </Button>
 
-                <TextBlock Text="прочитать файл"
-                                   Style="{DynamicResource TextBlockUsStyleVHCenter}"
-                                   TextWrapping="Wrap"
-                                   HorizontalAlignment="Center"
-                                   FontSize="18"
-                                   />
+                <TextBlock Text="Прочитать файл"
+                           Style="{DynamicResource TextBlockUsStyleVHCenter}"
+                           HorizontalAlignment="Center"
+                           FontSize="24"/>
             </StackPanel>
-            
+
+
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Right"
+                        Margin="0 20 50 0">
+                <Border Style="{DynamicResource TransparentBorderButtonIcon4848Style}">
+                    <Button Command="{Binding SaveWorkers}"
+                                    Style="{StaticResource TransparentButton4848Usual}">
+                        <Image Source="/Resources/Icons/WorkersPage/Save.png"
+                                       Stretch="None"/>
+                    </Button>
+                </Border>
+                <TextBlock Text="Синхронизировать"
+                       FontSize="24"
+                       Style="{DynamicResource TextBlockUsStyleVHCenter}"/>
+            </StackPanel>
+
             <Grid Grid.Row="1">
                 
                 <DataGrid Margin="10"

@@ -8,8 +8,7 @@
       d:DesignHeight="550" d:DesignWidth="800"
       Title="MainPage">
 
-    <Border Style="{DynamicResource MainPageCenterBorder}" 
-            Background="#FFB4C0AB">
+    <Border Style="{DynamicResource MainPageCenterBorder}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="140"/>

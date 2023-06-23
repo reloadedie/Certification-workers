@@ -25,6 +25,7 @@
     <None Remove="Resources\Icons\ManageAccounts.png" />
     <None Remove="Resources\Icons\MenuButton.png" />
     <None Remove="Resources\Icons\Quiz.png" />
+    <None Remove="Resources\Icons\WorkersPage\AddPhoto.png" />
     <None Remove="Resources\Icons\WorkersPage\PersonAdd.png" />
     <None Remove="Resources\Icons\WorkersPage\PersonRemove.png" />
     <None Remove="Resources\Icons\WorkersPage\Save.png" />
@@ -32,6 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Icons\WorkersPage\AddPhoto.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\WorkersPage\AutoRenew.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -98,12 +102,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\WorkersFolder\" />
+    <Folder Include="LocalDB\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ExcelDataReader" Version="3.6.0" />
     <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

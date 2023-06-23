@@ -1,4 +1,5 @@
-﻿using Certification_workers.ViewModels;
+﻿using Certification_workers.LocalDB;
+using Certification_workers.ViewModels;
 using ExcelDataReader;
 using Microsoft.Win32;
 using System;
@@ -21,9 +22,15 @@ namespace Certification_workers.Views
         public WorkersPage()
         {
             InitializeComponent();
-            DataContext = new WorkersPageVM();
+            DataContext = new WorkersPageVM(null);
         }
-
+        
+        public WorkersPage(Worker worker)
+        {
+            InitializeComponent();
+            DataContext = new WorkersPageVM(worker);
+        }
+        
         private void ToggleButtonChecked(object sender, RoutedEventArgs e)
         {
 

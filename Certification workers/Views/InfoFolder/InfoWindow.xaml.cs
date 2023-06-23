@@ -20,10 +20,18 @@ namespace Certification_workers.Views
     /// </summary>
     public partial class InfoWindow : Window
     {
+        static InfoWindow window;
+
         public InfoWindow()
         {
             InitializeComponent();
+            window = this;
             DataContext = new InfoWindowVM();
+        }
+
+        public static void MainNavigate(Page page)
+        {
+            window.InfoQuestionsFrame.Navigate(page);
         }
     }
 }

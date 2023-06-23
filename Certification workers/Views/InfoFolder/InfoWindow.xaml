@@ -64,7 +64,7 @@
                         CornerRadius="25"
                         Background="#FF98B0C9">
                     <Border BorderThickness="20">
-                        <Image Source="{Binding TagScreenPath}"/>
+                        <Frame x:Name="InfoQuestionsFrame" NavigationUIVisibility="Hidden"/>
                     </Border>
                 </Border>
             </Grid>

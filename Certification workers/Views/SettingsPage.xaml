@@ -39,17 +39,16 @@
                                 HorizontalAlignment="Center"
                                 Margin="10 10 10 0">
 
-                        <Border Background="#123"
-                                CornerRadius="10"
-                                Width="130">
-                            <Button Click="ButtonDarkTheme_Click"
-                                    Content="Тёмная тема"
-                                    Style="{StaticResource TransparentStyleButton}"
-                                    FontSize="18"
-                                    Foreground="White">
-                            </Button>
-                        </Border>
-                        
+
+                        <Button Click="ButtonDarkTheme_Click"
+                                Content="Тёмная тема"
+                                FontSize="18" 
+                                Width="130"
+                                Foreground="White"
+                                Style="{DynamicResource ButtonClickDarkTheme}">
+                        </Button>
+
+
                         <ToggleButton Grid.Row="1" 
                                       x:Name="ToggleButtonChangeStyles"
                                       IsChecked="{Binding StyleValue}"
@@ -85,16 +84,13 @@
                             </ToggleButton.Template>
                         </ToggleButton>
 
-                        <Border Background="#F5F5F5"
-                                CornerRadius="10"
-                                Width="130">
-                            <Button Click="ButtonLightTheme_Click"
-                                    Content="Светлая тема"
-                                    Style="{StaticResource TransparentStyleButton}"
-                                    FontSize="18"
-                                    Foreground="Black">
-                            </Button>
-                        </Border>
+                        <Button Click="ButtonLightTheme_Click"
+                                Content="Светлая тема"
+                                Style="{StaticResource ButtonClickLightTheme}"
+                                FontSize="18"
+                                Width="130"
+                                Foreground="Black">
+                        </Button>
                     </StackPanel>
 
                 </StackPanel>
@@ -105,11 +101,9 @@
                                 Margin="0 30 0 0">
                         <Border Style="{StaticResource TransparentBorderBlueColorButtonIcon4848Style}"
                             HorizontalAlignment="Center" Margin="0 0 0 0">
-                            <Button Style="{StaticResource TransparentStyleButton}"
+                            <Button Style="{StaticResource TransparentButton4848MenuHub}"
                                     Command="{Binding OpenDirectoryDocument}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/Resources/Icons/DataPage/Link.png"/>
-                                </Button.Background>
+                                <Image Source="/Resources/Icons/DataPage/Link.png"/>
                             </Button>
                         </Border>
 
@@ -127,15 +121,15 @@
             <Border Grid.Row="2"
                     Width="180"
                     Height="50"
-                    Style="{DynamicResource BorderCorner1Button}"
+                    Style="{DynamicResource Border1Corner11Button}"
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Bottom"
                     Background="LightBlue"
                     Margin="0 0 0 10">
-                <Border Style="{StaticResource BorderCorner2Button}">
+                <Border Style="{StaticResource Border2Corner11Button}">
                     <Button Content="О программе"
                             Click="OpenInfoWindow"
-                            Style="{StaticResource TransparentStyleButtonIn2CornerBorders}">
+                            Style="{StaticResource ButtonInCornerRadius11Border}">
 
                     </Button>
                 </Border>

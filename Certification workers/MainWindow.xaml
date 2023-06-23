@@ -126,7 +126,7 @@
                                 <Button Command="{Binding MainPageCommand}" 
                                     Height="48" Width="48"
                                     Margin="7,0,0,0"
-                                    Style="{StaticResource TransparentStyleButton}">
+                                    Style="{StaticResource TransparentButton4848MenuHub}">
                                     <Image Source="/Resources/Icons/MainWindow/Main.png"
                                        Stretch="None"/>
                                 </Button>
@@ -152,7 +152,7 @@
                                 <Button Command="{Binding GoToWorkersPage}" 
                                         Height="48" Width="48"
                                         Margin="7,0,0,0"
-                                        Style="{StaticResource TransparentStyleButton}">
+                                        Style="{StaticResource TransparentButton4848MenuHub}">
                                     <Image Source="/Resources/Icons/MainWindow/Person.png"
                                            Stretch="None"/>
                                 </Button>
@@ -178,7 +178,7 @@
                                 <Button Command="{Binding GoToDataPage}" 
                                         Height="48" Width="48"
                                         Margin="7,0,0,0"
-                                        Style="{StaticResource TransparentStyleButton}">
+                                        Style="{StaticResource TransparentButton4848MenuHub}">
                                     <Image Source="/Resources/Icons/MainWindow/Data.png"
                                            Stretch="None"/>
                                 </Button>
@@ -204,7 +204,7 @@
                                 <Button Command="{Binding GoToInfoPage}" 
                                         Height="48" Width="48"
                                         Margin="7,0,0,0"
-                                        Style="{StaticResource TransparentStyleButton}">
+                                        Style="{StaticResource TransparentButton4848MenuHub}">
                                     <Image Source="/Resources/Icons/MainWindow/Info.png"
                                        Stretch="None"/>
                                 </Button>
@@ -232,7 +232,7 @@
                             <Button Command="{Binding GoToSettingsPage}" 
                                     Height="48" Width="48"
                                     Margin="7,0,0,0"
-                                    Style="{DynamicResource TransparentStyleButton}">
+                                    Style="{DynamicResource TransparentButton4848MenuHub}">
                                 <Image Source="/Resources/Icons/MainWindow/Settings.png"
                                        Stretch="None"/>
                             </Button>
@@ -249,12 +249,6 @@
                             </StackPanel>
 
                         </StackPanel>
-
-                        <ListViewItem.ToolTip>
-                            <ToolTip x:Name="ToolTipSettings"
-                                     Content="Настройки"
-                                     Style="{StaticResource ToolTipStyle}"/>
-                        </ListViewItem.ToolTip>
                     </ListViewItem>
                 </Grid>
             </Border>

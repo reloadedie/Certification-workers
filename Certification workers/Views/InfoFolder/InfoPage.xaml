@@ -11,9 +11,9 @@
     <Border Style="{DynamicResource InfoPageBorderTheme}">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
                 <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
 
             <Label Content="Связаться с разработчиком"
@@ -28,10 +28,13 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Vertical" Margin="20 0 10 0">
-                    <Label Content="Рабочая почта"
-                               Style="{DynamicResource LabelUsStyle}"
+                    <TextBlock Text="Рабочая почта"
+                               Style="{DynamicResource TextBlockUsStyle}"
                                FontSize="24"
                                Margin="5"/>
+                    <TextBlock Text="(можно скопировать)"
+                               Style="{DynamicResource TextBlockUsStyle}"
+                               FontSize="24"/>
                     <TextBox Text="reloadedie@mail.ru" IsReadOnly="True"
                              Margin="5"
                              FontSize="20"
@@ -52,7 +55,7 @@
                                FontSize="20"
                                TextWrapping="Wrap"
                                Style="{DynamicResource TextBlockUsStyleVHCenter}"/>
-                    <TextBlock Text="''Информационные системы и программирование''"
+                    <TextBlock Text="''Информационные системы и программирование'' (2023)"
                                FontSize="20"
                                TextWrapping="Wrap"
                                Style="{DynamicResource TextBlockUsStyleVHCenter}"/>
@@ -62,15 +65,15 @@
             <Border Grid.Row="2"
                         Width="180"
                         Height="50"
-                        Style="{DynamicResource BorderCorner1Button}"
+                        Style="{DynamicResource Border1Corner11Button}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Bottom"
                         Background="LightBlue"
                         Margin="0 0 0 10">
-                <Border Style="{DynamicResource BorderCorner2Button}">
+                <Border Style="{DynamicResource Border2Corner11Button}">
                     <Button Content="О программе"
                             Click="OpenInfoWindow"
-                            Style="{DynamicResource TransparentStyleButtonIn2CornerBorders}">
+                            Style="{DynamicResource ButtonInCornerRadius11Border}">
 
                     </Button>
                 </Border>

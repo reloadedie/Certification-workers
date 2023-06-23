@@ -1,6 +1,8 @@
 ﻿using Certification_workers.Core;
-using Certification_workers.Models;
+using Certification_workers.LocalDB;
+using Certification_workers.Views.WorkersFolder;
 using ExcelDataReader;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,9 @@ namespace Certification_workers.ViewModels
 {
     public class WorkersPageVM : BaseNotify
     {
-        public ObservableCollection<Worker> ListWorkers { get; set; }
+        
+        CetrificationWorkersContext db = new CetrificationWorkersContext();
+        public List<Worker> ListWorkers { get; set; }
 
         private Worker selectedWorker;
         public Worker SelectedWorker
@@ -31,91 +35,42 @@ namespace Certification_workers.ViewModels
                 SignalChanged();
             }
         }
-
-        public ICollectionView WorkersCollectionView { get; set; }
+        
 
         public CoreCommand AddWorker { get; set; }
+        public CoreCommand EditSelectedWorker { get; set; }
         public CoreCommand DownloadFile { get; set; }
-        public CoreCommand SaveWorkersInFile { get; set; }
         public CoreCommand DeleteWorker { get; set; }
 
-        public List<DateStruct> DateCertifiedBool { get; set; }
-        public WorkersPageVM()
+        
+        public WorkersPageVM(Worker worker)
         {
-            DateCertifiedBool = new List<DateStruct>
-            (
-                new DateStruct[]
-                {
-                    new DateStruct{Name = "Сертифицирован", Value=true },
-                    new DateStruct{Name = "Не сертифицирован", Value=false }
-                }
-            );
-
-            ListWorkers = new ObservableCollection<Worker>
-            {
-                new Worker
-                {
-                    IdCode = "EfimovDenDim",
-                    Name = "Денис",
-                    LastName = "Ефимов",
-                    Patronymic = "Дмитриевич",
-                    FullName = "Ефимов Денис Дмитриевич",
-                    Email = "efimovef@mail.ru",
-                    PhoneNumber = "89242478788",
-                    Category = "1",
-                    GroupSpeciality = "1145",
-                    Organization = "ВБМК",
-                   // IsCertified = true,
-                   // Id = 1,
-                    Description = "Сотрудник",
-                    //DateCertified = new DateTime(DateTime.Today.Year),
-                    StringDateCertified = "11.05.2023"
-                }
-            };
+            ListWorkers = new List<Worker>();
+            LoadWorkersFromDB();
+            SelectedWorker = worker;
 
             WorkersCollectionView = CollectionViewSource.GetDefaultView(ListWorkers);
-            WorkersCollectionView.Filter = ShortFilterWorkers;
-            WorkersCollectionView.Filter = LongFilterWorkers;
+           // WorkersCollectionView.Filter = ShortFilterWorkers;
+           // WorkersCollectionView.Filter = LongFilterWorkers;
             WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Ascending));
 
             //commands
+
             #region
+
             AddWorker = new CoreCommand(() =>
             {
-                ListWorkers.Add(new Worker
-                {
-                    IdCode = "нет",
-                    Name = "пусто",
-                    LastName = "пусто",
-                    Patronymic = "пусто",
-                    FullName = "пусто",
-                    Email = "пусто",
-                    PhoneNumber = "не указан",
-                    Category = "не указано",
-                    GroupSpeciality = "пусто",
-                    Organization = "не указано",
-                    //IsCertified = false,
-                    //Id = null,
-                    Description = "Сотрудник",
-                    //DateCertified = null,
-                    StringDateCertified = "не указано"
-                });
-
+                EditWorkerWindow editWorkerWindow = new EditWorkerWindow();
+                editWorkerWindow.ShowDialog();
             });
 
-            DownloadFile = new CoreCommand(() =>
+            EditSelectedWorker = new CoreCommand(() =>
             {
-                Task.Run(OpenExcelFile);
-            });
 
-            SaveWorkersInFile = new CoreCommand(() =>
-            {
-                Task.Run(SynchronizeDataWorkersFromFile);
             });
 
             DeleteWorker = new CoreCommand(() =>
             {
-
                 if (MessageBox.Show("Вы точно хотите удалить?", "Вопрос",
                                      MessageBoxButton.YesNo,
                                      MessageBoxImage.Question) == MessageBoxResult.No)
@@ -132,8 +87,11 @@ namespace Certification_workers.ViewModels
 
         }
 
+        public ICollectionView WorkersCollectionView { get; set; }
+
         // fullName filter
         #region
+
         private string _workersFullNameString = string.Empty;
         public string WorkersFullNameFilterString
         {
@@ -151,10 +109,12 @@ namespace Certification_workers.ViewModels
 
         private bool ShortFilterWorkers(object obj)
         {
+            /*
             if (obj is Worker worker)
             {
                 return worker.FullName.Contains(_workersFullNameString, StringComparison.InvariantCultureIgnoreCase);
             }
+            */
             return false;
         }
         #endregion
@@ -203,21 +163,6 @@ namespace Certification_workers.ViewModels
             {
                 _workersPatronymicString = value;
                 OnPropertyChanged(nameof(WorkersPatronymicFilterString));
-                WorkersCollectionView.Refresh();
-            }
-        }
-
-        private string _workersIdCodeString = string.Empty;
-        public string WorkersIdCodeFilterString
-        {
-            get
-            {
-                return _workersIdCodeString;
-            }
-            set
-            {
-                _workersIdCodeString = value;
-                OnPropertyChanged(nameof(WorkersIdCodeFilterString));
                 WorkersCollectionView.Refresh();
             }
         }
@@ -297,7 +242,6 @@ namespace Certification_workers.ViewModels
             }
         }
 
-
         private string _workersDateCertifiedString = string.Empty;
         public string WorkersDateCertifiedFilterString
         {
@@ -318,79 +262,34 @@ namespace Certification_workers.ViewModels
             if (obj is Worker worker)
             {
                 // string bth = worker.DateCertified.ToString();
-
+                /*
                 return worker.Name.Contains(_workersNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.LastName.Contains(_workersLastNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Patronymic.Contains(_workersPatronymicString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.IdCode.Contains(_workersIdCodeString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.Organization.Contains(_workersOrganizationString, StringComparison.InvariantCultureIgnoreCase) &&
+                       worker.IdOrganizationNavigation.OrganizationName.Contains(_workersOrganizationString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Email.Contains(_workersEmailString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.GroupSpeciality.Contains(_workersGroupSpecialityString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Category.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase) &&
-                       // worker.IsCertified.Contains(_workersFullNameString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.StringDateCertified.Contains(_workersDateCertifiedString, StringComparison.InvariantCultureIgnoreCase);
+                       worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase);
+                */
+                // worker.IsCertified.Contains(_workersFullNameString, StringComparison.InvariantCultureIgnoreCase) &&
                 // bth.Contains(WorkersDateCertifiedFilterString, StringComparison.Ordinal);
             }
+
             return false;
         }
 
         #endregion
 
-        public string FilePath = string.Empty;
-        string path = @"C:\progs\ListExcelTestWITHOUT.csv";
-
-        public async Task OpenExcelFile()
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "CSV файлы (*.csv)|EXCEL файлы (*.xlsx)|*.xlsx|EXCEL файлы 2003 (*.xls)|*.xls|все файлы (*.*)|*.*";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                FilePath = new FileInfo(openFileDialog.FileName).ToString();
-                try
-                {
-                    var rows = File.ReadAllLines(FilePath);
-                    for (int i = 1; i < rows.Length; i++)
-                    {
-                        var columns = rows[i].Split(new char[] { ';' }, 
-                                      StringSplitOptions.RemoveEmptyEntries);
-
-                        ListWorkers.Add(new Worker
-                        {
-                            IdCode = columns[0],
-                            Name = columns[1],
-                            LastName = columns[2],
-                            Patronymic = columns[3],
-                            FullName = columns[4],
-                            Organization = columns[5],
-                            GroupSpeciality = columns[6],
-                            Email = columns[7],
-                            PhoneNumber = columns[8],
-                            Category = columns[9],
-                            IsCertifiedString = columns[10],
-                            StringDateCertified = columns[11],
-                            Description = columns[12]
-                        });
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-        }
-
-
-        async Task SynchronizeDataWorkersFromFile()
+        private void LoadWorkersFromDB()
         {
             try
             {
-
+                ListWorkers = new List<Worker>(db.Workers.Include(s => s.IdOrganizationNavigation).ToList());
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-
+                MessageBox.Show(e.Message);
             }
 
         }

@@ -49,7 +49,6 @@ namespace Certification_workers
                 ToolTipInformation.Visibility = Visibility.Collapsed;
                 ToolTipMain.Visibility = Visibility.Collapsed;
 
-                ToolTipSettings.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -58,7 +57,6 @@ namespace Certification_workers
                 ToolTipInformation.Visibility = Visibility.Visible;
                 ToolTipMain.Visibility = Visibility.Visible;
 
-                ToolTipSettings.Visibility = Visibility.Visible;
             }
 
         }

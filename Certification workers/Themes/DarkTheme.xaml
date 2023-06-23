@@ -58,12 +58,164 @@
 
     <!--MainPage-->
 
-    <!--InfoWindow-->
-    <Style TargetType="{x:Type Border}" x:Key="InfoWindowBorderTheme">
-        <Setter Property="Background" Value="#FF2097A6"/>
-    </Style>
-    <!--InfoWindow-->
+    <Style TargetType="{x:Type Button}" x:Key="ModernButtonBlue">
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+        <Setter Property="Background" Value="#6C5EF1"/>
 
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="Auto" Height="Auto" CornerRadius="10"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FFAC9FF1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type Button}" x:Key="TransparentButton4848Usual">
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="Width" Value="48"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FFAC9FF1"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Setter Property="Background" Value="#6C5EF1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="TransparentButton4848ReadFile">
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+        <Setter Property="Background" Value="#FF4D96DF"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="Width" Value="48"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF2A95D1"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Setter Property="Background" Value="#FF3A6DBD"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="TransparentButton4848MenuHub">
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="Width" Value="48"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF2A95D1"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Setter Property="Background" Value="#FF3A6DBD"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="ButtonClickDarkTheme">
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+        <Setter Property="Background" Value="#123"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF342845"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Setter Property="Background" Value="#FF222B68"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="ButtonClickLightTheme">
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+        <Setter Property="Background" Value="#F5F5F5"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FFAED1AC"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Setter Property="Background" Value="#FF77B87F"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     <!--WorkersPage-->
 
     <Style TargetType="{x:Type Grid}" x:Key="WorkersOffGridBackground">
@@ -74,13 +226,6 @@
         <Setter Property="Background" Value="#FF445D9E"/>
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="BorderThickness" Value="8"/>
-    </Style>
-
-    <Style TargetType="{x:Type Border}" x:Key="TransparentBorderButtonIcon4848Style">
-        <Setter Property="Background" Value="#FF6C24C6"/>
-        <Setter Property="CornerRadius" Value="5"/>
-        <Setter Property="Width" Value="50"/>
-        <Setter Property="Height" Value="50"/>
     </Style>
 
     <Style TargetType="{x:Type Border}" x:Key="TransparentToggleButtonButtonWorkersRightBorder">
@@ -149,8 +294,8 @@
     <Style TargetType="{x:Type Border}" x:Key="DataPageMainBorderStyle">
         <Setter Property="CornerRadius" Value="20"/>
         <Setter Property="Background" Value="#FF5B40A6"/>
-        <Setter Property="Width" Value="850"/>
-        <Setter Property="Height" Value="500"/>
+        <Setter Property="Width" Value="950"/>
+        <Setter Property="Height" Value="600"/>
     </Style>
 
     <Style TargetType="{x:Type Border}" x:Key="TransparentBorderBlueColorButtonIcon4848Style">
@@ -185,22 +330,43 @@
     </Style>
     <!--InfoPage-->
 
-    <Style TargetType="{x:Type Border}" x:Key="BorderCorner1Button">
+    <Style TargetType="{x:Type Border}" x:Key="Border1Corner11Button">
         <Setter Property="Background" Value="LightBlue"/>
-        <Setter Property="CornerRadius" Value="11"/>
+        <Setter Property="CornerRadius" Value="10"/>
     </Style>
     
-    <Style TargetType="{x:Type Border}" x:Key="BorderCorner2Button">
-        <Setter Property="Background" Value="#FF751DF3"/>
-        <Setter Property="CornerRadius" Value="11"/>
-        <Setter Property="BorderThickness" Value="3"/>
+    <Style TargetType="{x:Type Border}" x:Key="Border2Corner11Button">
+        <Setter Property="Background" Value="LightBlue"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="BorderThickness" Value="2"/>
     </Style>
 
-    <Style TargetType="{x:Type Button}" x:Key="TransparentStyleButtonIn2CornerBorders">
+    <Style TargetType="{x:Type Button}" x:Key="ButtonInCornerRadius11Border">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="BorderThickness" Value="0,0,0,0"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="20"/>    
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Background" Value="#FF751DF3"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="10"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF3A6DBD"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Setter Property="Background" Value="#FF3CC6D7"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     
     <Style TargetType="{x:Type Label}" x:Key="LabelUsStyle">
@@ -221,7 +387,6 @@
         <Setter Property="BorderThickness" Value="0,0,0,0"/>
         <Setter Property="Background" Value="Transparent"/>
     </Style>
-
 
     <ImageBrush x:Key="ToggleButtonMouseOver"
                 ImageSource="/Resources/Icons/MainWindow/MenuButton.png"/>

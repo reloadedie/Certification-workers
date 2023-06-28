@@ -47,7 +47,6 @@ namespace Certification_workers.ViewModels
             LoadWorkersFromDB();
             SelectedWorker = worker;
 
-
             WorkersCollectionView = CollectionViewSource.GetDefaultView(ListWorkers);
             //WorkersCollectionView.Filter = FilterWorkers;
             WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Ascending));

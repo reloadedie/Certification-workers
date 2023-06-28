@@ -387,7 +387,6 @@
 
                         <Grid Grid.Row="1"
                               Margin="0 10 0 20">
-
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition/>
@@ -407,7 +406,8 @@
 
                             </StackPanel>-->
 
-                            <StackPanel Grid.Row="1">
+                            <StackPanel Grid.Row="1"
+                                        >
                                 <Line Style="{DynamicResource LineinBorderInfoWorkers}"
                                       Margin="0 20 0 0"/>
 
@@ -418,7 +418,7 @@
 
                                 <ScrollViewer Margin="0 10 0 8"
                                               Visibility="Visible"
-                                              Height="390">
+                                              Height="445">
                                     <StackPanel>
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
                                                    FontSize="18"
@@ -462,19 +462,9 @@
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
                                                    FontSize="18"
-                                                   Text="Полное имя"
-                                                   Margin="0 6 0 0"/>
-                                        <TextBox Text="{Binding SelectedWorker.FullName}"
-                                                 Style="{StaticResource WorkerValueTextBox}"
-                                                 Margin="0 6 0 0"
-                                                 IsReadOnly="True"
-                                                 Foreground="Black"/>
-
-                                        <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
-                                                   FontSize="18"
                                                    Text="Организация"
                                                    Margin="0 6 0 0"/>
-                                        <TextBox Text="{Binding SelectedWorker.Organization}"
+                                        <TextBox Text="{Binding SelectedWorker.OrganizationName}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
                                                  IsReadOnly="True"
@@ -484,7 +474,7 @@
                                                    FontSize="18"
                                                    Text="Специальность"
                                                    Margin="0 6 0 0"/>
-                                        <TextBox Text="{Binding SelectedWorker.Organization}"
+                                        <TextBox Text="{Binding SelectedWorker.GroupSpeciality}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
                                                  IsReadOnly="True"
@@ -522,19 +512,9 @@
 
                                         <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
                                                    FontSize="18"
-                                                   Text="Сертифицирован"
-                                                   Margin="0 6 0 0"/>
-                                        <TextBox Text="{Binding SelectedWorker.IsCertified}"
-                                                 Style="{StaticResource WorkerValueTextBox}"
-                                                 Margin="0 6 0 0"
-                                                 IsReadOnly="True"
-                                                 Foreground="Black"/>
-
-                                        <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
-                                                   FontSize="18"
                                                    Text="Дата сертификации"
                                                    Margin="0 6 0 0"/>
-                                        <TextBox Text="{Binding SelectedWorker.StringDateCertified}"
+                                        <TextBox Text="{Binding SelectedWorker.DateCertified}"
                                                  Style="{StaticResource WorkerValueTextBox}"
                                                  Margin="0 6 0 0"
                                                  IsReadOnly="True"

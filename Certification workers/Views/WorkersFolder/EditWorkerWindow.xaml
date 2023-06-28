@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Данные о работнике" 
         MinHeight="750" MinWidth="950"
-        Height="900" Width="1100"
+        Height="800" Width="1100"
         WindowStartupLocation="CenterScreen"
         Background="{x:Null}">
     <Window.Resources>
@@ -115,7 +115,7 @@
                                     <ImageBrush ImageSource="{Binding SelectedWorker.WorkerPhoto}"/>
                                 </Border.Background>
 
-                                <Button Command="{Binding EditPhoto}" 
+                                <Button Command="{Binding DownloadImagePhotoWorker}" 
                                     Width="48" Height="48" 
                                     HorizontalAlignment="Right" 
                                     VerticalAlignment="Bottom"
@@ -171,7 +171,7 @@
                 </Grid>
 
                 <Border Grid.Row="1" 
-                        BorderThickness="20">
+                        Margin="20,0,20,0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -183,7 +183,7 @@
                             <StackPanel Grid.Row="0">
                                 <StackPanel Orientation="Horizontal">
                                     <Border Style="{DynamicResource EditWorkerBorderProperty}"
-                                    Margin="10,0,10,0">
+                                            Margin="10,0,10,0">
                                         <StackPanel Margin="5,5,5,5">
                                             <TextBox Text="{Binding SelectedWorker.PhoneNumber}"
                                              FontSize="24"
@@ -257,7 +257,7 @@
 
                                             <ToggleButton Grid.Column="1"
                                                   x:Name="ToggleButtonCertified"
-                                                  IsChecked="False"
+                                                  IsChecked="{Binding BoolToggleButtonCertified}"
                                                   Width="100"
                                                   Height="40"
                                                   VerticalAlignment="Top">
@@ -296,11 +296,10 @@
                                     </Border>
 
                                     <Border Width="450"
-                                            Visibility="{Binding DateCertifiedVisibility}"
                                             Style="{StaticResource EditWorkerBorderProperty}"
                                             Margin="30,0,0,0">
                                         <Grid HorizontalAlignment="Center"
-                                          VerticalAlignment="Center">
+                                              VerticalAlignment="Center">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
@@ -313,10 +312,10 @@
                                                Style="{DynamicResource LabelUsStyle}"/>
 
                                             <DatePicker Grid.Column="1"
-                                                    
-                                                    FontSize="20"
-                                                    Width="190"
-                                                    Margin="10,0,0,0"/>
+                                                        SelectedDate="{Binding SelectedWorker.DateCertified}"
+                                                        FontSize="20"
+                                                        Width="190"
+                                                        Margin="10,0,0,0"/>
                                         </Grid>
                                     </Border>
                                 </StackPanel>
@@ -363,16 +362,16 @@
                         <StackPanel Grid.Row="1"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Right"
-                                    Margin="20,0,0,0"
+                                    Margin="20,10,0,0"
                                     VerticalAlignment="Bottom">
-                            <Button Click="CanselCloseClick"
+                            <Button Command="{Binding CanselCloseClick}"
                                         Content="Отмена"
                                         FontSize="30"
                                         Width="180" Height="60"
                                         Style="{StaticResource ButtonContentSaveOrOther}"
                                         Margin="0,0,10,0"/>
 
-                            <Button Command="{Binding SaveAccountSetting}"
+                            <Button Command="{Binding SaveWorker}"
                                         Style="{StaticResource ButtonContentSaveOrOther}"
                                         Content="Сохранить"
                                         FontSize="30"

@@ -1,18 +1,23 @@
 ﻿using Certification_workers.Core;
 using Certification_workers.LocalDB;
+using Certification_workers.Views.WorkersFolder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace Certification_workers.ViewModels
 {
     public class EditWorkerWindowVM : BaseNotify
     {
+        public ObservableCollection<Worker> Workers { get; set; }
         CertificationWorkersContext db = new CertificationWorkersContext();
 
         private Worker selectedWorker;
@@ -25,19 +30,53 @@ namespace Certification_workers.ViewModels
                 SignalChanged();
             }
         }
-        
+
         public CoreCommand DownloadImagePhotoWorker { get; set; }
+        public CoreCommand CanselCloseClick { get; set; }
         public CoreCommand SaveWorker { get; set; }
 
-        public EditWorkerWindowVM(Worker worker)
+        private bool boolToggleButtonCertified;
+        public bool BoolToggleButtonCertified
         {
+            get => boolToggleButtonCertified;
+            set
+            {
+                boolToggleButtonCertified = value;
+                SignalChanged();
+            }
+        }
+
+        private Visibility dateCertifiedVisibility = Visibility.Collapsed;
+        public Visibility DateCertifiedVisibility
+        {
+            get => dateCertifiedVisibility;
+            set
+            {
+                dateCertifiedVisibility = value;
+                SignalChanged();
+            }
+        }
+
+        public EditWorkerWindowVM(Worker worker, ToggleButton toggleButtonCertified, Window window)
+        {
+            
+            if (worker == null)
+            {
+                worker = new Worker
+                {
+                    IdTypeCertified = 2
+                    
+                };
+                SelectedWorker = worker;
+            }
             SelectedWorker = worker;
+
+            LoadWorkers();
 
             DownloadImagePhotoWorker = new CoreCommand(() =>
             {
                 OpenFileDialog ofd = new OpenFileDialog();
-                ofd.Filter =
-                               "Image files|*.bmp;*.jpg;*.gif;*.png;*.tif|All files|*.*";
+                ofd.Filter = "Image files|*.bmp;*.jpg;*.png|All files|*.*";
                 ofd.FilterIndex = 1;
                 if (ofd.ShowDialog() == true)
                 {
@@ -53,19 +92,46 @@ namespace Certification_workers.ViewModels
                         SelectedWorker.WorkerPhoto = File.ReadAllBytes(ofd.FileName);
                         db.SaveChanges();
                         SignalChanged("SelectedWorker");
-
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(e.Message);
+                        MessageBox.Show(ex.Message);
                     }
                 }
             });
 
             SaveWorker = new CoreCommand(() =>
             {
+                try
+                {                    
+                    if (toggleButtonCertified.IsChecked == true)
+                    {
+                        SelectedWorker.IdTypeCertified = 1;
+                    }
+                    else SelectedWorker.IdTypeCertified = 2;                    
 
+                    db.Workers.Add(SelectedWorker);
+                    db.SaveChanges();
+                    db.Workers.Update(SelectedWorker);
+                    window.Close();
+                    LoadWorkers();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
+
+            CanselCloseClick = new CoreCommand(() =>
+            {
+                window.Close();
+            });
+        }
+
+        private void LoadWorkers()
+        {
+            Workers = new ObservableCollection<Worker>(db.Workers);
+            SignalChanged("Workers");
         }
 
     }

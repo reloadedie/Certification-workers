@@ -14,7 +14,7 @@ namespace Certification_workers.LocalDB
         public string OrganizationName { get; set; } = null!;
         public string Category { get; set; } = null!;
         public string GroupSpeciality { get; set; } = null!;
-        public string? DateCertified { get; set; }
+        public DateTime? DateCertified { get; set; }
         public string? Description { get; set; }
         public byte[]? WorkerPhoto { get; set; }
         public int IdTypeCertified { get; set; }

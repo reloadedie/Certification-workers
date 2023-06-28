@@ -40,18 +40,52 @@
                        Margin="0 20 0 0"/>
             </StackPanel>
 
-            <Border Grid.Row="2"
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Border Grid.Column="0"
+                            Width="200" Height="60"
+                            Style="{StaticResource Border1Corner11Button}">
+                        <Button Content="К сотрудникам"
+                                Command="{Binding GoToWorkers}"
+                                Style="{StaticResource ButtonInCornerRadiusBorder}">
+                                
+                        </Button>
+                    </Border>
+
+                    <Border Grid.Column="1"
+                            Width="200" Height="60"
+                            Style="{StaticResource Border1Corner11Button}">
+                        <Button Content="Прочитать данные"
+                                Command="{Binding GoToData}"
+                                Style="{StaticResource ButtonInCornerRadiusBorder}">
+
+                        </Button>
+                    </Border>
+                </Grid>
+
+                <Border Grid.Row="1"
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Center"
                         Width="180" Height="60"
                         Style="{StaticResource Border1Corner11Button}"
                         Margin="0 0 0 20">
-                <Border Style="{StaticResource Border2Corner11Button}">
-                    <Button Content="Опрограмме" 
+                    <Border Style="{StaticResource Border2Corner11Button}">
+                        <Button Content="О программе" 
                             Command="{Binding GoToInfoPage}"
                             Style="{StaticResource ButtonInCornerRadius11Border}"/>
+                    </Border>
                 </Border>
-            </Border>
+            </Grid>
         </Grid>
 
     </Border>

@@ -21,23 +21,17 @@ namespace Certification_workers.Views.WorkersFolder
     /// </summary>
     public partial class EditWorkerWindow : Window
     {
-        EditWorkerWindow editWorkerWindow;
-
         public EditWorkerWindow()
         {
             InitializeComponent();
-            DataContext = new EditWorkerWindowVM(null);
+            DataContext = new EditWorkerWindowVM(null, ToggleButtonCertified, this);
         }
 
         public EditWorkerWindow(Worker worker)
         {
             InitializeComponent();
-            DataContext = new EditWorkerWindowVM(worker);
+            DataContext = new EditWorkerWindowVM(worker, ToggleButtonCertified, this);
         }
 
-        private void CanselCloseClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }

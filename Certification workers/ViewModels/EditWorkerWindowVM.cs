@@ -1,5 +1,6 @@
 ﻿using Certification_workers.Core;
 using Certification_workers.LocalDB;
+using Certification_workers.Views;
 using Certification_workers.Views.WorkersFolder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
@@ -60,8 +61,6 @@ namespace Certification_workers.ViewModels
 
         public EditWorkerWindowVM(Worker worker, ToggleButton toggleButtonCertified, Window window)
         {
-            LoadWorkers();
-
             if (worker == null)
             {
                 worker = new Worker
@@ -109,6 +108,19 @@ namespace Certification_workers.ViewModels
                     }
                     else SelectedWorker.IdTypeCertified = 2;
 
+                    if(SelectedWorker.Name == null |
+                       SelectedWorker.LastName == null |
+                       SelectedWorker.Patronymic == null |
+                       SelectedWorker.Email == null |
+                       SelectedWorker.PhoneNumber == null |
+                       SelectedWorker.OrganizationName == null |
+                       SelectedWorker.Category == null |
+                       SelectedWorker.GroupSpeciality == null)
+                    {
+                        MessageBox.Show("Вы не заполнили обязательные поля");
+                        return;
+                    }
+
                     if (SelectedWorker.Id == 0)
                     {
                         db.Workers.Add(SelectedWorker);
@@ -118,7 +130,8 @@ namespace Certification_workers.ViewModels
 
                     db.SaveChanges();
                     window.Close();
-                    LoadWorkers();
+                    WorkersPage workersPage = new();
+                    MainWindow.MainNavigate(workersPage);
                 }
                 catch (Exception ex)
                 {
@@ -139,8 +152,9 @@ namespace Certification_workers.ViewModels
                 {
                     db.Remove(SelectedWorker);
                     db.SaveChanges();
-                    LoadWorkers();
                     window.Close();
+                    WorkersPage workersPage = new();
+                    MainWindow.MainNavigate(workersPage);
                     /*
                     if (SelectedWorker.Id == 0)
                     {
@@ -157,12 +171,5 @@ namespace Certification_workers.ViewModels
                 }
             });
         }
-
-        private void LoadWorkers()
-        {
-            Workers = new ObservableCollection<Worker>(db.Workers);
-            SignalChanged("Workers");
-        }
-
     }
 }

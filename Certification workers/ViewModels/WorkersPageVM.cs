@@ -1,5 +1,6 @@
 ﻿using Certification_workers.Core;
 using Certification_workers.LocalDB;
+using Certification_workers.Views;
 using Certification_workers.Views.WorkersFolder;
 using ExcelDataReader;
 using Microsoft.EntityFrameworkCore;
@@ -38,36 +39,6 @@ namespace Certification_workers.ViewModels
             }
         }
 
-        public ObservableCollection<TypeCertified> CertifiedTypes { get; set; }
-        private List<TypeCertified> allTypeCertifiedList;
-
-        private TypeCertified selectedTypeCertified;
-        public TypeCertified SelectedTypeCertified
-        {
-            get => selectedTypeCertified;
-            set
-            {
-                selectedTypeCertified = value;
-                FilterCertifiedType();
-                SignalChanged();
-            }
-        }
-
-        private void FilterCertifiedType()
-        {
-            if (selectedWorker?.IdTypeCertified == 0)
-            {
-                LoadWorkersFromDB();
-            }
-            else
-            {
-                var filteredWorkers = FilteredCertifiedListWorkers
-                    .Where(x => x.IdTypeCertified == SelectedWorker.IdTypeCertified);
-                ListWorkers = new List<Worker>(filteredWorkers);
-            }
-            SignalChanged("ListWorkers");
-        }
-
         public CoreCommand AddWorker { get; set; }
         public CoreCommand EditSelectedWorker { get; set; }
         public CoreCommand DownloadFile { get; set; }
@@ -81,7 +52,7 @@ namespace Certification_workers.ViewModels
 
             WorkersCollectionView = CollectionViewSource.GetDefaultView(ListWorkers);
             WorkersCollectionView.Filter = FilterWorkers;
-            //WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Ascending));
+            WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Id), ListSortDirection.Ascending));
             
             //commands
             #region
@@ -107,6 +78,8 @@ namespace Certification_workers.ViewModels
                     db.Remove(SelectedWorker);
                     db.SaveChanges();
                     LoadWorkers();
+                    WorkersPage workersPage = new();
+                    MainWindow.MainNavigate(workersPage);
                 }
                 else
                 {
@@ -118,7 +91,6 @@ namespace Certification_workers.ViewModels
         }
 
         public ICollectionView WorkersCollectionView { get; set; }
-
         //filters
         #region
 
@@ -259,7 +231,6 @@ namespace Certification_workers.ViewModels
 
         private bool FilterWorkers(object obj)
         {
-            
             if (obj is Worker worker)
             {
                 string datecert = worker.DateCertified.ToString();
@@ -272,7 +243,7 @@ namespace Certification_workers.ViewModels
                        worker.Category.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.IdTypeCertifiedNavigation.TypeName.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
-                       datecert.Contains(WorkersDateCertifiedFilterString, StringComparison.InvariantCultureIgnoreCase) ;
+                       datecert.Contains(WorkersDateCertifiedFilterString, StringComparison.Ordinal) ;
                 
             }
             
@@ -281,16 +252,43 @@ namespace Certification_workers.ViewModels
 
         #endregion
 
+        public ObservableCollection<TypeCertified> CertifiedTypes { get; set; }
+        private List<TypeCertified> allTypeCertifiedList;
+
+        private TypeCertified selectedTypeCertified;
+        public TypeCertified SelectedTypeCertified
+        {
+            get => selectedTypeCertified;
+            set
+            {
+                selectedTypeCertified = value;
+                FilterCertifiedType();
+                SignalChanged();
+            }
+        }
+
+        private void FilterCertifiedType()
+        {
+            if (selectedWorker?.IdTypeCertified == 0)
+            {
+                LoadWorkersFromDB();
+            }
+            var filteredWorkers = FilteredCertifiedListWorkers
+                    .Where(x => x.IdTypeCertified == SelectedWorker.IdTypeCertified);
+            ListWorkers = new List<Worker>(filteredWorkers);
+            SignalChanged("ListWorkers");
+        }
+
         private void LoadWorkersFromDB()
         {
             try
             {
                 ListWorkers = new List<Worker>(db.Workers.Include(s => s.IdTypeCertifiedNavigation).ToList());
 
-                allTypeCertifiedList = db.TypeCertifieds.ToList();//.Include(s => s.TypeName)
+                allTypeCertifiedList = db.TypeCertifieds.ToList();
                 allTypeCertifiedList.Insert(0, new TypeCertified());
                 CertifiedTypes = new ObservableCollection<TypeCertified>(allTypeCertifiedList);
-                SignalChanged("TypeCertifiedCollection");
+                SignalChanged("CertifiedTypes");
             }
             catch (Exception e)
             {

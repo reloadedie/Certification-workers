@@ -6,7 +6,7 @@ namespace Certification_workers
 {
     public class MainWindowVM : BaseNotify
     {
-        WorkersPage workersPage = new WorkersPage();
+        WorkersPage workersPage = new();
 
         public CoreCommand MainPageCommand { get; set; }
         public CoreCommand GoToWorkersPage { get; set; }

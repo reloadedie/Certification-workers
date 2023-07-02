@@ -373,8 +373,9 @@
                                                    FontSize="18"
                                                    Text="Сертифицирован"
                                                    Margin="0 6 0 0"/>
-                                            <ComboBox ItemsSource="{Binding TypeCertifiedCollection}"
+                                            <ComboBox ItemsSource="{Binding CertifiedTypes}"
                                                       SelectedItem="{Binding SelectedCertifiedType}"
+                                                      DisplayMemberPath="TypeName"
                                                       Width="200" Height="30"
                                                       FontSize="18"
                                                       Margin="0 6 0 0"/>

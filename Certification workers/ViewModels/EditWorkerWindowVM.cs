@@ -17,8 +17,8 @@ namespace Certification_workers.ViewModels
 {
     public class EditWorkerWindowVM : BaseNotify
     {
-        public ObservableCollection<Worker> Workers { get; set; }
         CertificationWorkersContext db = new CertificationWorkersContext();
+        public ObservableCollection<Worker> Workers { get; set; }
 
         private Worker selectedWorker;
         public Worker SelectedWorker
@@ -34,6 +34,7 @@ namespace Certification_workers.ViewModels
         public CoreCommand DownloadImagePhotoWorker { get; set; }
         public CoreCommand CanselCloseClick { get; set; }
         public CoreCommand SaveWorker { get; set; }
+        public CoreCommand DeleteWorker { get; set; }
 
         private bool boolToggleButtonCertified;
         public bool BoolToggleButtonCertified
@@ -59,19 +60,17 @@ namespace Certification_workers.ViewModels
 
         public EditWorkerWindowVM(Worker worker, ToggleButton toggleButtonCertified, Window window)
         {
-            
+            LoadWorkers();
+
             if (worker == null)
             {
                 worker = new Worker
                 {
                     IdTypeCertified = 2
-                    
                 };
                 SelectedWorker = worker;
             }
             SelectedWorker = worker;
-
-            LoadWorkers();
 
             DownloadImagePhotoWorker = new CoreCommand(() =>
             {
@@ -103,16 +102,21 @@ namespace Certification_workers.ViewModels
             SaveWorker = new CoreCommand(() =>
             {
                 try
-                {                    
+                {
                     if (toggleButtonCertified.IsChecked == true)
                     {
                         SelectedWorker.IdTypeCertified = 1;
                     }
-                    else SelectedWorker.IdTypeCertified = 2;                    
+                    else SelectedWorker.IdTypeCertified = 2;
 
-                    db.Workers.Add(SelectedWorker);
+                    if (SelectedWorker.Id == 0)
+                    {
+                        db.Workers.Add(SelectedWorker);
+                        db.SaveChanges();
+                    }
+                    else db.Workers.Update(SelectedWorker);
+
                     db.SaveChanges();
-                    db.Workers.Update(SelectedWorker);
                     window.Close();
                     LoadWorkers();
                 }
@@ -125,6 +129,32 @@ namespace Certification_workers.ViewModels
             CanselCloseClick = new CoreCommand(() =>
             {
                 window.Close();
+            });
+
+            DeleteWorker = new CoreCommand(() =>
+            {
+                if (MessageBox.Show("Вы точно хотите удалить?", "Вопрос",
+                                    MessageBoxButton.YesNo,
+                                    MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    db.Remove(SelectedWorker);
+                    db.SaveChanges();
+                    LoadWorkers();
+                    window.Close();
+                    /*
+                    if (SelectedWorker.Id == 0)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        
+                    }*/
+                }
+                else
+                {
+                    return;
+                }
             });
         }
 

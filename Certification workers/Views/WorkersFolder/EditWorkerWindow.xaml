@@ -359,25 +359,42 @@
                             </StackPanel>
                         </ScrollViewer>
 
-                        <StackPanel Grid.Row="1"
-                                    Orientation="Horizontal"
-                                    HorizontalAlignment="Right"
-                                    Margin="20,10,0,0"
-                                    VerticalAlignment="Bottom">
-                            <Button Command="{Binding CanselCloseClick}"
+                        <Grid Grid.Row="1"
+                              Margin="20,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Command="{Binding DeleteWorker}"
+                                    Content="Удалить"
+                                    HorizontalAlignment="Left"
+                                    FontSize="30"
+                                    Width="180" Height="60"
+                                    Style="{StaticResource ButtonContentSaveOrOther}"
+                                    Margin="10,0,0,0"/>
+
+                            <StackPanel Grid.Column="1"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom">
+                                <Button Command="{Binding CanselCloseClick}"
                                         Content="Отмена"
                                         FontSize="30"
                                         Width="180" Height="60"
                                         Style="{StaticResource ButtonContentSaveOrOther}"
                                         Margin="0,0,10,0"/>
 
-                            <Button Command="{Binding SaveWorker}"
+                                <Button Command="{Binding SaveWorker}"
                                         Style="{StaticResource ButtonContentSaveOrOther}"
                                         Content="Сохранить"
                                         FontSize="30"
                                         Width="180" Height="60"
                                         Margin="40,0,0,0"/>
-                        </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        
+                      
                     </Grid>
                 </Border>
             </Grid>

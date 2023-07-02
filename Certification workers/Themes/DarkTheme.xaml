@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    
     <!--MainWindow-->
     <Style TargetType="{x:Type Border}" x:Key="MainWindowBorderTheme">
         <Setter Property="Background" Value="#FF3A2D54"/>
@@ -216,8 +215,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
     <!--WorkersPage-->
-
     <Style TargetType="{x:Type Grid}" x:Key="WorkersOffGridBackground">
         <Setter Property="Background" Value="#FF3A2D54"/>
     </Style>
@@ -329,12 +328,6 @@
         <Setter Property="CornerRadius" Value="11"/>
     </Style>
     
-    <Style TargetType="{x:Type Border}" x:Key="Border2Corner11Button">
-        <Setter Property="Background" Value="LightBlue"/>
-        <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="BorderThickness" Value="2"/>
-    </Style>
-
     <Style TargetType="{x:Type Button}" x:Key="ButtonInCornerRadiusBorder">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="20"/>
@@ -363,34 +356,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="{x:Type Button}" x:Key="ButtonInCornerRadius11Border">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="20"/>    
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="Background" Value="#FF751DF3"/>
-
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="10"
-                            Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FF3A6DBD"/>
-            </Trigger>
-            <Trigger Property="IsMouseCaptureWithin" Value="True">
-                <Setter Property="Background" Value="#FF3CC6D7"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    
     <Style TargetType="{x:Type Label}" x:Key="LabelUsStyle">
         <Setter Property="Foreground" Value="White"/>
     </Style>

@@ -31,20 +31,22 @@
                            FontSize="30" 
                            Text="Выберите интересующий вопрос"
                            Style="{DynamicResource TextBlockUsStyleVHCenter}"/>
-                <ComboBox Width="410" Margin="5 20 5 0"
+                <ComboBox Width="570" 
                           SelectedItem="{Binding SelectedTag}"
-                          FontSize="20">
+                          FontSize="26"
+                          Margin="5 20 5 0">
                     <ComboBox.Items>
                         <ComboBoxItem Content="Что это за программа? Что она делает?" Tag="1"/>
                         <ComboBoxItem Content="Возможности программы?" Tag="2"/>
                         <ComboBoxItem Content="Как воспользоваться функциями данной программы?" Tag="3"/>
                         <ComboBoxItem Content="Как создать сотрудника?" Tag="4"/>
-                        <ComboBoxItem Content="Как импортировать данные?" Tag="5"/>
-                        <ComboBoxItem Content="Как сменить стиль программы?" Tag="6"/>
-                        <ComboBoxItem Content="Основной цикл работы программы?" Tag="7"/>
-                        <ComboBoxItem Content="Не подходит стиль оформления программы?" Tag="8"/>
-                        <ComboBoxItem Content="Программа сбоит, даёт ошибки. Что делать?" Tag="9"/>
-                        <ComboBoxItem Content="Как связаться с разработчиком?" Tag="10"/>
+                        <ComboBoxItem Content="Как найти сотрудника?" Tag="5"/>
+                        <ComboBoxItem Content="Как взаимодействовать с Excel файлами? " Tag="6"/>
+                        <ComboBoxItem Content="Как сменить стиль программы?" Tag="7"/>
+                        <ComboBoxItem Content="Основной цикл работы программы?" Tag="8"/>
+                        <ComboBoxItem Content="Не подходит стиль оформления программы?" Tag="9"/>
+                        <ComboBoxItem Content="Программа сбоит, даёт ошибки. Что делать?" Tag="10"/>
+                        <ComboBoxItem Content="Как связаться с разработчиком?" Tag="11"/>
                     </ComboBox.Items>
                 </ComboBox>
             </StackPanel>
@@ -55,18 +57,17 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Binding HelpedList}"
-                           Style="{DynamicResource TextBlockUsStyleVHCenter}"
-                           TextWrapping="Wrap"
-                           FontSize="16"
-                           />
-
                 <Border Grid.Row="1"
                         BorderThickness="10"
                         CornerRadius="25"
-                        Background="#FF98B0C9">
+                        Background="#FF3B5168">
                     <Border BorderThickness="20">
-                        <Frame x:Name="InfoQuestionsFrame" NavigationUIVisibility="Hidden"/>
+
+                        <TextBlock Text="{Binding HelpedText}"
+                                   Style="{DynamicResource TextBlockUsStyle}"
+                                   TextWrapping="Wrap"
+                                   FontSize="30"
+                                   />
                     </Border>
                 </Border>
             </Grid>

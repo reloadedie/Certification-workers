@@ -1,19 +1,13 @@
 ﻿using Certification_workers.Core;
 using Certification_workers.Views;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Certification_workers
 {
     public class MainWindowVM : BaseNotify
-    { 
+    {
+        WorkersPage workersPage = new WorkersPage();
+
         public CoreCommand MainPageCommand { get; set; }
         public CoreCommand GoToWorkersPage { get; set; }
         public CoreCommand GoToDataPage { get; set; }
@@ -30,7 +24,7 @@ namespace Certification_workers
 
             GoToWorkersPage = new CoreCommand(() => 
             {
-                MainWindow.MainNavigate(new WorkersPage());
+                MainWindow.MainNavigate(workersPage);
             });
 
             GoToDataPage = new CoreCommand(() => 

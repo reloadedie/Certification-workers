@@ -25,13 +25,8 @@ namespace Certification_workers.Views
         public InfoWindow()
         {
             InitializeComponent();
-            window = this;
             DataContext = new InfoWindowVM();
         }
 
-        public static void MainNavigate(Page page)
-        {
-            window.InfoQuestionsFrame.Navigate(page);
-        }
     }
 }

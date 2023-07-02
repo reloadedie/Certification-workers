@@ -3,6 +3,7 @@ using Certification_workers.LocalDB;
 using Certification_workers.Views.WorkersFolder;
 using ExcelDataReader;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,8 @@ namespace Certification_workers.ViewModels
         CertificationWorkersContext db = new CertificationWorkersContext();
 
         public List<Worker> ListWorkers { get; set; }
-        
+        public List<Worker> FilteredCertifiedListWorkers;
+
         private Worker selectedWorker;
         public Worker SelectedWorker
         {
@@ -35,7 +37,37 @@ namespace Certification_workers.ViewModels
                 SignalChanged();
             }
         }
-        
+
+        public ObservableCollection<TypeCertified> CertifiedTypes { get; set; }
+        private List<TypeCertified> allTypeCertifiedList;
+
+        private TypeCertified selectedTypeCertified;
+        public TypeCertified SelectedTypeCertified
+        {
+            get => selectedTypeCertified;
+            set
+            {
+                selectedTypeCertified = value;
+                FilterCertifiedType();
+                SignalChanged();
+            }
+        }
+
+        private void FilterCertifiedType()
+        {
+            if (selectedWorker?.IdTypeCertified == 0)
+            {
+                LoadWorkersFromDB();
+            }
+            else
+            {
+                var filteredWorkers = FilteredCertifiedListWorkers
+                    .Where(x => x.IdTypeCertified == SelectedWorker.IdTypeCertified);
+                ListWorkers = new List<Worker>(filteredWorkers);
+            }
+            SignalChanged("ListWorkers");
+        }
+
         public CoreCommand AddWorker { get; set; }
         public CoreCommand EditSelectedWorker { get; set; }
         public CoreCommand DownloadFile { get; set; }
@@ -48,11 +80,10 @@ namespace Certification_workers.ViewModels
             SelectedWorker = worker;
 
             WorkersCollectionView = CollectionViewSource.GetDefaultView(ListWorkers);
-            //WorkersCollectionView.Filter = FilterWorkers;
-            WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Ascending));
+            WorkersCollectionView.Filter = FilterWorkers;
+            //WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Ascending));
             
             //commands
-
             #region
 
             AddWorker = new CoreCommand(() =>
@@ -71,13 +102,15 @@ namespace Certification_workers.ViewModels
             {
                 if (MessageBox.Show("Вы точно хотите удалить?", "Вопрос",
                                      MessageBoxButton.YesNo,
-                                     MessageBoxImage.Question) == MessageBoxResult.No)
+                                     MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-
+                    db.Remove(SelectedWorker);
+                    db.SaveChanges();
+                    LoadWorkers();
                 }
                 else
                 {
-                    //ListWorkers.Remove(SelectedWorker);
+                    return;
                 }
             });
 
@@ -226,23 +259,23 @@ namespace Certification_workers.ViewModels
 
         private bool FilterWorkers(object obj)
         {
-            /*
+            
             if (obj is Worker worker)
             {
-                // string bth = worker.DateCertified.ToString();
+                string datecert = worker.DateCertified.ToString();
                 return worker.Name.Contains(_workersNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.LastName.Contains(_workersLastNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Patronymic.Contains(_workersPatronymicString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.IdOrganizationNavigation.OrganizationName.Contains(_workersOrganizationString, StringComparison.InvariantCultureIgnoreCase) &&
+                       worker.OrganizationName.Contains(_workersOrganizationString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Email.Contains(_workersEmailString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.GroupSpeciality.Contains(_workersGroupSpecialityString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Category.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase);
+                       worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase) &&
+                       worker.IdTypeCertifiedNavigation.TypeName.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
+                       datecert.Contains(WorkersDateCertifiedFilterString, StringComparison.InvariantCultureIgnoreCase) ;
                 
-                // worker.IsCertified.Contains(_workersFullNameString, StringComparison.InvariantCultureIgnoreCase) &&
-                // bth.Contains(WorkersDateCertifiedFilterString, StringComparison.Ordinal);
             }
-            */
+            
             return false;
         }
 
@@ -253,12 +286,22 @@ namespace Certification_workers.ViewModels
             try
             {
                 ListWorkers = new List<Worker>(db.Workers.Include(s => s.IdTypeCertifiedNavigation).ToList());
+
+                allTypeCertifiedList = db.TypeCertifieds.ToList();//.Include(s => s.TypeName)
+                allTypeCertifiedList.Insert(0, new TypeCertified());
+                CertifiedTypes = new ObservableCollection<TypeCertified>(allTypeCertifiedList);
+                SignalChanged("TypeCertifiedCollection");
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
+        }
 
+        private void LoadWorkers()
+        {
+            ListWorkers = new List<Worker>(db.Workers);
+            SignalChanged("Workers");
         }
     }
 

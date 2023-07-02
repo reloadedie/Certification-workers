@@ -126,13 +126,9 @@
                     VerticalAlignment="Bottom"
                     Background="LightBlue"
                     Margin="0 0 0 10">
-                <Border Style="{StaticResource Border2Corner11Button}">
-                    <Button Content="О программе"
-                            Click="OpenInfoWindow"
-                            Style="{StaticResource ButtonInCornerRadius11Border}">
-
-                    </Button>
-                </Border>
+                <Button Content="О программе"
+                        Click="OpenInfoWindow"
+                        Style="{StaticResource ButtonInCornerRadiusBorder}"/>
             </Border>
         </Grid>
     </Border>

@@ -27,7 +27,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Vertical" Margin="20 0 10 0">
+                <StackPanel Orientation="Vertical" 
+                            Margin="20 0 10 0">
                     <TextBlock Text="Рабочая почта"
                                Style="{DynamicResource TextBlockUsStyle}"
                                FontSize="24"
@@ -63,20 +64,16 @@
             </Grid>
 
             <Border Grid.Row="2"
-                        Width="260"
-                        Height="60"
-                        Style="{DynamicResource Border1Corner11Button}"
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Bottom"
-                        Background="LightBlue"
-                        Margin="0 0 0 10">
-                <Border Style="{DynamicResource Border2Corner11Button}">
-                    <Button Content="Инструкция к программе"
-                            Click="OpenInfoWindow"
-                            Style="{DynamicResource ButtonInCornerRadius11Border}">
-
-                    </Button>
-                </Border>
+                    Width="280"
+                    Height="60"
+                    Style="{DynamicResource Border1Corner11Button}"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Bottom"
+                    Background="LightBlue"
+                    Margin="0 0 0 10">
+                <Button Content="Инструкция к программе"
+                        Click="OpenInfoWindow"
+                        Style="{DynamicResource ButtonInCornerRadiusBorder}"/>
             </Border>
         </Grid>
     </Border>

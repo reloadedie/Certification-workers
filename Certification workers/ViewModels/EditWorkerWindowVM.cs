@@ -108,7 +108,7 @@ namespace Certification_workers.ViewModels
                     }
                     else SelectedWorker.IdTypeCertified = 2;
 
-                    if(SelectedWorker.Name == null |
+                    if (SelectedWorker.Name == null |
                        SelectedWorker.LastName == null |
                        SelectedWorker.Patronymic == null |
                        SelectedWorker.Email == null |
@@ -124,10 +124,13 @@ namespace Certification_workers.ViewModels
                     if (SelectedWorker.Id == 0)
                     {
                         db.Workers.Add(SelectedWorker);
-                        db.SaveChanges();
                     }
-                    else db.Workers.Update(SelectedWorker);
 
+                    else
+                    {
+                        db.Entry(worker).CurrentValues.SetValues(SelectedWorker);
+                        db.Workers.Update(SelectedWorker);
+                    }
                     db.SaveChanges();
                     window.Close();
                     WorkersPage workersPage = new();
@@ -146,29 +149,30 @@ namespace Certification_workers.ViewModels
 
             DeleteWorker = new CoreCommand(() =>
             {
-                if (MessageBox.Show("Вы точно хотите удалить?", "Вопрос",
-                                    MessageBoxButton.YesNo,
-                                    MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (SelectedWorker.Id == 0)
                 {
-                    db.Remove(SelectedWorker);
-                    db.SaveChanges();
-                    window.Close();
-                    WorkersPage workersPage = new();
-                    MainWindow.MainNavigate(workersPage);
-                    /*
-                    if (SelectedWorker.Id == 0)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        
-                    }*/
+                    MessageBox.Show("Пока не создано сотрудника, чтобы удалить");
+                    return;
                 }
                 else
                 {
-                    return;
+                    if (MessageBox.Show("Вы точно хотите удалить?", "Вопрос",
+                                   MessageBoxButton.YesNo,
+                                   MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        db.Remove(SelectedWorker);
+                        db.SaveChanges();
+                        window.Close();
+                        WorkersPage workersPage = new();
+                        MainWindow.MainNavigate(workersPage);
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
+
+               
             });
         }
     }

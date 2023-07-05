@@ -44,6 +44,24 @@ namespace Certification_workers.ViewModels
         public CoreCommand DownloadFile { get; set; }
         public CoreCommand DeleteSelectedWorker { get; set; }
 
+        public CoreCommand WorkerSortUpName { get; set; }
+        public CoreCommand WorkerSortDownName { get; set; }
+
+        public CoreCommand WorkerSortUpLastName { get; set; }
+        public CoreCommand WorkerSortDownLastName { get; set; }
+
+        public CoreCommand WorkerSortUpPatronymic { get; set; }
+        public CoreCommand WorkerSortDownPatronymic { get; set; }
+
+        public CoreCommand WorkerSortUpGroupSpeciality { get; set; }
+        public CoreCommand WorkerSortDownGroupSpeciality { get; set; }
+
+        public CoreCommand WorkerSortUpDateCertified { get; set; }
+        public CoreCommand WorkerSortDownDateCertified { get; set; }
+
+        public CoreCommand WorkerSortUpTypeCertified { get; set; }
+        public CoreCommand WorkerSortDownTypeCertified { get; set; }
+
         public WorkersPageVM(Worker worker)
         {
             ListWorkers = new List<Worker>();
@@ -52,8 +70,6 @@ namespace Certification_workers.ViewModels
 
             WorkersCollectionView = CollectionViewSource.GetDefaultView(ListWorkers);
             WorkersCollectionView.Filter = FilterWorkers;
-            WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Id), ListSortDirection.Ascending));
-            
             //commands
             #region
 
@@ -86,6 +102,81 @@ namespace Certification_workers.ViewModels
                     return;
                 }
             });
+
+            // Sorting
+            #region
+            WorkerSortUpName = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Ascending));
+            });
+
+            WorkerSortDownName = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Name), ListSortDirection.Descending));
+            });
+
+            WorkerSortUpLastName = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.LastName), ListSortDirection.Ascending));
+            });
+
+            WorkerSortDownLastName = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.LastName), ListSortDirection.Descending));
+            });
+
+            WorkerSortUpPatronymic = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Patronymic), ListSortDirection.Ascending));
+            });
+
+            WorkerSortDownPatronymic = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.Patronymic), ListSortDirection.Descending));
+            });
+
+            WorkerSortUpGroupSpeciality = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.GroupSpeciality), ListSortDirection.Ascending));
+            });
+
+            WorkerSortDownGroupSpeciality = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.GroupSpeciality), ListSortDirection.Descending));
+            });
+
+            WorkerSortUpDateCertified = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.DateCertified), ListSortDirection.Descending));
+            });
+
+            WorkerSortDownDateCertified = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.DateCertified), ListSortDirection.Ascending));
+            });
+
+            WorkerSortUpTypeCertified = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.IdTypeCertified), ListSortDirection.Ascending));
+            });
+
+            WorkerSortDownTypeCertified = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.IdTypeCertified), ListSortDirection.Descending));
+            });
+            #endregion
 
             #endregion
         }
@@ -214,26 +305,10 @@ namespace Certification_workers.ViewModels
             }
         }
 
-        private string _workersDateCertifiedString = string.Empty;
-        public string WorkersDateCertifiedFilterString
-        {
-            get
-            {
-                return _workersDateCertifiedString;
-            }
-            set
-            {
-                _workersDateCertifiedString = value;
-                OnPropertyChanged(nameof(WorkersDateCertifiedFilterString));
-                WorkersCollectionView.Refresh();
-            }
-        }
-
         private bool FilterWorkers(object obj)
         {
             if (obj is Worker worker)
             {
-                string datecert = worker.DateCertified.ToString();
                 return worker.Name.Contains(_workersNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.LastName.Contains(_workersLastNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Patronymic.Contains(_workersPatronymicString, StringComparison.InvariantCultureIgnoreCase) &&
@@ -242,9 +317,7 @@ namespace Certification_workers.ViewModels
                        worker.GroupSpeciality.Contains(_workersGroupSpecialityString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Category.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.IdTypeCertifiedNavigation.TypeName.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
-                       datecert.Contains(WorkersDateCertifiedFilterString, StringComparison.Ordinal) ;
-                
+                       worker.IdTypeCertifiedNavigation.TypeName.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase);
             }
             
             return false;
@@ -284,6 +357,7 @@ namespace Certification_workers.ViewModels
             try
             {
                 ListWorkers = new List<Worker>(db.Workers.Include(s => s.IdTypeCertifiedNavigation).ToList());
+                SignalChanged("Workers");
 
                 allTypeCertifiedList = db.TypeCertifieds.ToList();
                 allTypeCertifiedList.Insert(0, new TypeCertified());

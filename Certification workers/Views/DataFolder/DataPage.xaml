@@ -41,7 +41,7 @@
                         HorizontalAlignment="Right"
                         Margin="0 20 50 0">
                 <Border Style="{DynamicResource TransparentBorderButtonIcon4848Style}">
-                    <Button Command="{Binding SaveWorkers}"
+                    <Button Command="{Binding SynchronizeFile}"
                                     Style="{StaticResource TransparentButton4848Usual}">
                         <Image Source="/Resources/Icons/WorkersPage/Save.png"
                                        Stretch="None"/>

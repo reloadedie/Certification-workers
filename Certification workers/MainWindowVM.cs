@@ -24,7 +24,8 @@ namespace Certification_workers
 
             GoToWorkersPage = new CoreCommand(() => 
             {
-                MainWindow.MainNavigate(workersPage);
+                WorkersPage workersPageUpd = new();
+                MainWindow.MainNavigate(workersPageUpd);
             });
 
             GoToDataPage = new CoreCommand(() => 

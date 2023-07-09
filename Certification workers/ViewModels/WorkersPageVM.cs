@@ -62,6 +62,8 @@ namespace Certification_workers.ViewModels
         public CoreCommand WorkerSortUpTypeCertified { get; set; }
         public CoreCommand WorkerSortDownTypeCertified { get; set; }
 
+        public CoreCommand CanselSortingList { get; set; }
+
         public WorkersPageVM(Worker worker)
         {
             ListWorkers = new List<Worker>();
@@ -70,6 +72,7 @@ namespace Certification_workers.ViewModels
 
             WorkersCollectionView = CollectionViewSource.GetDefaultView(ListWorkers);
             WorkersCollectionView.Filter = FilterWorkers;
+
             //commands
             #region
 
@@ -103,7 +106,7 @@ namespace Certification_workers.ViewModels
                 }
             });
 
-            // Sorting
+            // Dynamic sorting
             #region
             WorkerSortUpName = new CoreCommand(() =>
             {
@@ -175,6 +178,11 @@ namespace Certification_workers.ViewModels
             {
                 WorkersCollectionView.SortDescriptions.Clear();
                 WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.IdTypeCertified), ListSortDirection.Descending));
+            });
+
+            CanselSortingList = new CoreCommand(() =>
+            {
+                WorkersCollectionView.SortDescriptions.Clear();
             });
             #endregion
 

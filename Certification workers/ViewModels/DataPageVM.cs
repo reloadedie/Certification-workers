@@ -1,11 +1,5 @@
 ﻿using Certification_workers.Core;
-using ExcelDataReader;
-using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Certification_workers.ViewModels
@@ -14,11 +8,13 @@ namespace Certification_workers.ViewModels
     {
         public string PathToFile { get; set; }
 
-        public CoreCommand DownloadFile { get; set; }
+        public CoreCommand ReadFile { get; set; }
+        public CoreCommand GenerateFile { get; set; }
+        public CoreCommand SynchronizeFile { get; set; }
 
         public DataPageVM()
         {
-            DownloadFile = new CoreCommand(() =>
+            ReadFile = new CoreCommand(() =>
             {
                 try
                 {
@@ -30,9 +26,35 @@ namespace Certification_workers.ViewModels
                 }
 
             });
+
+            GenerateFile = new CoreCommand(() =>
+            {
+                try
+                {
+                   
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            });
+
+            SynchronizeFile = new CoreCommand(() =>
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            });
         }
 
-        private void OpenExcelFile()
+        private static void OpenExcelFile()
         {
 
         }

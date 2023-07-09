@@ -285,12 +285,33 @@
                                     <MenuItem Header="Сортировать" 
                                               FontSize="22"
                                               VerticalAlignment="Center">
-                                        <MenuItem Command="{Binding WorkerSortName}" Header="По имени"/>
-                                        <MenuItem Command="{Binding WorkerSortLastName}" Header="По фамилии"/>
-                                        <MenuItem Command="{Binding WorkerSortPatronymic}" Header="По отчеству"/>
-                                        <MenuItem Command="{Binding WorkerSortGroupSpeciality}" Header="По группе"/>
-                                        <MenuItem Command="{Binding WorkerSortDateCertified}" Header="По дате аттестации (сертификации)"/>
-                                        <MenuItem Command="{Binding WorkerSortTypeCertified}" Header="По типу сертификации"/>
+                                        <MenuItem Header="По имени">
+                                            <MenuItem Header="А-Я" Command="{Binding WorkerSortUpName}"/>
+                                            <MenuItem Header="Я-А" Command="{Binding WorkerSortDownName}"/>
+                                        </MenuItem>
+
+                                        <MenuItem Header="По фамилии">
+                                            <MenuItem Header="А-Я" Command="{Binding WorkerSortUpLastName}"/>
+                                            <MenuItem Header="Я-А" Command="{Binding WorkerSortDownLastName}"/>
+                                        </MenuItem>
+
+                                        <MenuItem Header="По отчеству">
+                                            <MenuItem Header="А-Я" Command="{Binding WorkerSortUpPatronymic}"/>
+                                            <MenuItem Header="Я-А" Command="{Binding WorkerSortDownPatronymic}"/>
+                                        </MenuItem>
+
+                                        <MenuItem Header="По группе">
+                                            <MenuItem Header="А-Я, затем цифры" Command="{Binding WorkerSortUpGroupSpeciality}"/>
+                                            <MenuItem Header="цифры, затем Я-А" Command="{Binding WorkerSortDownGroupSpeciality}"/>
+                                        </MenuItem>
+
+                                        <MenuItem Header="По типу сертификации">
+                                            <MenuItem Header="Сначала сертифицированные" Command="{Binding WorkerSortUpName}"/>
+                                            <MenuItem Header="Сначала не сертифицированные" Command="{Binding WorkerSortDownName}"/>
+                                        </MenuItem>
+
+                                        <MenuItem Header="Убрать сортировку" 
+                                                  Command="{Binding CanselSortingList}"/>
                                     </MenuItem>
                                 </Menu>
                             </Border>
@@ -298,7 +319,6 @@
                         
                     </StackPanel>
                     
-
                     <Border Grid.Row="1"
                             Style="{DynamicResource WorkersRightBorder}"
                             Width="300" 

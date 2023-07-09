@@ -313,10 +313,26 @@ namespace Certification_workers.ViewModels
             }
         }
 
+        private string _workersDateCertifiedString = string.Empty;
+        public string WorkersDateCertifiedFilterString
+        {
+            get
+            {
+                return _workersDateCertifiedString;
+            }
+            set
+            {
+                _workersDateCertifiedString = value;
+                OnPropertyChanged(nameof(WorkersDateCertifiedFilterString));
+                WorkersCollectionView.Refresh();
+            }
+        }
+
         private bool FilterWorkers(object obj)
         {
             if (obj is Worker worker)
             {
+                string datecert = worker.DateCertified.Value.ToShortDateString();
                 return worker.Name.Contains(_workersNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.LastName.Contains(_workersLastNameString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Patronymic.Contains(_workersPatronymicString, StringComparison.InvariantCultureIgnoreCase) &&
@@ -325,7 +341,8 @@ namespace Certification_workers.ViewModels
                        worker.GroupSpeciality.Contains(_workersGroupSpecialityString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.Category.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
                        worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.IdTypeCertifiedNavigation.TypeName.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase);
+                       worker.IdTypeCertifiedNavigation.TypeName.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase)&&
+                       datecert.Contains(WorkersDateCertifiedFilterString, StringComparison.Ordinal);
             }
             
             return false;

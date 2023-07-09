@@ -102,11 +102,11 @@ namespace Certification_workers.ViewModels
             {
                 try
                 {
-                    if (toggleButtonCertified.IsChecked == true)
+                    if (toggleButtonCertified.IsChecked == false)
                     {
-                        SelectedWorker.IdTypeCertified = 1;
+                        SelectedWorker.IdTypeCertified = 2;
                     }
-                    else SelectedWorker.IdTypeCertified = 2;
+                    else SelectedWorker.IdTypeCertified = 1;
 
                     if (SelectedWorker.Name == null |
                        SelectedWorker.LastName == null |

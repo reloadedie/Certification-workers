@@ -3,7 +3,7 @@
 
     <!--MainWindow-->
     <Style TargetType="{x:Type Border}" x:Key="MainWindowBorderTheme">
-        <Setter Property="Background" Value="#FF3A2D54"/>
+        <Setter Property="Background" Value="#FF402D65"/>
     </Style>
 
     <Style TargetType="{x:Type Border}" x:Key="LeftStackPanelBorder">
@@ -218,7 +218,7 @@
     
     <!--WorkersPage-->
     <Style TargetType="{x:Type Grid}" x:Key="WorkersOffGridBackground">
-        <Setter Property="Background" Value="#FF3A2D54"/>
+        <Setter Property="Background" Value="#FF402D65"/>
     </Style>
     
     <Style TargetType="{x:Type Border}" x:Key="BorderListWorkers">
@@ -239,7 +239,7 @@
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF185DA1"/>
-                    <GradientStop Color="#FF163656" Offset="1"/>
+                    <GradientStop Color="#FF1C5A98" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -324,7 +324,7 @@
     <!--InfoPage-->
 
     <Style TargetType="{x:Type Border}" x:Key="Border1Corner11Button">
-        <Setter Property="Background" Value="LightBlue"/>
+        <Setter Property="Background" Value="#FF5AB7CC"/>
         <Setter Property="CornerRadius" Value="11"/>
     </Style>
     

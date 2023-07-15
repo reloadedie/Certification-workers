@@ -159,13 +159,13 @@ namespace Certification_workers.ViewModels
             WorkerSortUpDateCertified = new CoreCommand(() =>
             {
                 WorkersCollectionView.SortDescriptions.Clear();
-                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.DateCertified), ListSortDirection.Descending));
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.YearCertified), ListSortDirection.Ascending));
             });
 
             WorkerSortDownDateCertified = new CoreCommand(() =>
             {
                 WorkersCollectionView.SortDescriptions.Clear();
-                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.DateCertified), ListSortDirection.Ascending));
+                WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(Worker.YearCertified), ListSortDirection.Descending));
             });
 
             WorkerSortUpTypeCertified = new CoreCommand(() =>
@@ -332,17 +332,20 @@ namespace Certification_workers.ViewModels
         {
             if (obj is Worker worker)
             {
-                string datecert = worker.DateCertified.Value.ToShortDateString();
-                return worker.Name.Contains(_workersNameString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.LastName.Contains(_workersLastNameString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.Patronymic.Contains(_workersPatronymicString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.OrganizationName.Contains(_workersOrganizationString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.Email.Contains(_workersEmailString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.GroupSpeciality.Contains(_workersGroupSpecialityString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.Category.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase) &&
-                       worker.IdTypeCertifiedNavigation.TypeName.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase)&&
-                       datecert.Contains(WorkersDateCertifiedFilterString, StringComparison.Ordinal);
+                if (worker.YearCertified != null)
+                {
+                    return worker.Name.Contains(_workersNameString, StringComparison.InvariantCultureIgnoreCase) &&
+                           worker.LastName.Contains(_workersLastNameString, StringComparison.InvariantCultureIgnoreCase) &&
+                           worker.Patronymic.Contains(_workersPatronymicString, StringComparison.InvariantCultureIgnoreCase) &&
+                           worker.OrganizationName.Contains(_workersOrganizationString, StringComparison.InvariantCultureIgnoreCase) &&
+                           worker.Email.Contains(_workersEmailString, StringComparison.InvariantCultureIgnoreCase) &&
+                           worker.GroupSpeciality.Contains(_workersGroupSpecialityString, StringComparison.InvariantCultureIgnoreCase) &&
+                           worker.Category.Contains(_workersCategoryString, StringComparison.InvariantCultureIgnoreCase) &&
+                           worker.PhoneNumber.Contains(_workersPhoneNumberString, StringComparison.InvariantCultureIgnoreCase);
+                           worker.YearCertified.Contains(_workersDateCertifiedString, StringComparison.InvariantCultureIgnoreCase);
+                }
+
+               
             }
             
             return false;

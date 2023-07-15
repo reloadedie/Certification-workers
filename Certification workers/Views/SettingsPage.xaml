@@ -124,7 +124,6 @@
                     Style="{DynamicResource Border1Corner11Button}"
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Bottom"
-                    Background="LightBlue"
                     Margin="0 0 0 10">
                 <Button Content="О программе"
                         Click="OpenInfoWindow"

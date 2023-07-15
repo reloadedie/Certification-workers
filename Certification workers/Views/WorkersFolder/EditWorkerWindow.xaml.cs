@@ -2,7 +2,9 @@
 using Certification_workers.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,5 +35,14 @@ namespace Certification_workers.Views.WorkersFolder
             DataContext = new EditWorkerWindowVM(worker, ToggleButtonCertified, this);
         }
 
+        private void ToggleButtonCertified_Checked(object sender, RoutedEventArgs e)
+        {
+            DateCertifiedBorder.Visibility = Visibility.Visible;
+        }
+
+        private void ToggleButtonCertified_UnChecked(object sender, RoutedEventArgs e)
+        {
+            DateCertifiedBorder.Visibility = Visibility.Collapsed;
+        }
     }
 }

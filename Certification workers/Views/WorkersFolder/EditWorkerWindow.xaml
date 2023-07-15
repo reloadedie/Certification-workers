@@ -52,7 +52,7 @@
         </Style>
 
         <Style TargetType="{x:Type Border}" x:Key="EditWorkerBorderProperty">
-            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Background" Value="#FF6F6F6F"/>
             <Setter Property="Width" Value="330"/>
             <Setter Property="Height" Value="80"/>
             <Setter Property="CornerRadius" Value="15"/>
@@ -258,6 +258,8 @@
                                             <ToggleButton Grid.Column="1"
                                                           x:Name="ToggleButtonCertified"
                                                           IsChecked="{Binding BoolToggleButtonCertified, Mode=OneWayToSource}"
+                                                          Checked="ToggleButtonCertified_Checked"
+                                                          Unchecked="ToggleButtonCertified_UnChecked"
                                                           Width="100"
                                                           Height="40"
                                                           VerticalAlignment="Top"
@@ -297,8 +299,10 @@
                                     </Border>
 
                                     <Border Width="450"
+                                            Visibility="{Binding DateCertifiedVisibility}"
                                             Style="{StaticResource EditWorkerBorderProperty}"
-                                            Margin="30,0,0,0">
+                                            Margin="30,0,0,0"
+                                            x:Name="DateCertifiedBorder">
                                         <Grid HorizontalAlignment="Center"
                                               VerticalAlignment="Center">
                                             <Grid.ColumnDefinitions>
@@ -312,11 +316,11 @@
                                                    FontSize="24" FontWeight="Medium"
                                                    Style="{DynamicResource LabelUsStyle}"/>
 
-                                            <DatePicker Grid.Column="1"
-                                                        SelectedDate="{Binding SelectedWorker.DateCertified}"
-                                                        FontSize="20"
-                                                        Width="190"
-                                                        Margin="10,0,0,0"/>
+                                            <TextBox Grid.Column="1"
+                                                     Text="{Binding SelectedWorker.YearCertified}"
+                                                     FontSize="24"
+                                                     Width="150"
+                                                     Margin="10,5,0,0"/>
                                         </Grid>
                                     </Border>
                                 </StackPanel>
@@ -369,6 +373,7 @@
 
                             <Button Command="{Binding DeleteWorker}"
                                     Content="Удалить"
+                                    Visibility="{Binding DeleteWorkerVisibility}"
                                     HorizontalAlignment="Left"
                                     FontSize="30"
                                     Width="180" Height="60"

@@ -51,8 +51,6 @@ namespace Certification_workers.LocalDB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DateCertified).HasColumnType("date");
-
                 entity.Property(e => e.Description).IsUnicode(false);
 
                 entity.Property(e => e.Email)
@@ -82,6 +80,10 @@ namespace Certification_workers.LocalDB
                     .IsUnicode(false);
 
                 entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.YearCertified)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 

@@ -36,7 +36,8 @@
                             </Button>
                         </Border>
                         <Label Content="Добавить"
-                                   Style="{DynamicResource LabelUsStyleVHCenter}"/>
+                               FontSize="16"
+                               Style="{DynamicResource LabelUsStyleVHCenter}"/>
                     </StackPanel>
 
                 </StackPanel>
@@ -111,10 +112,10 @@
                                 </ToggleButton.Triggers>
                             </ToggleButton>
                         </Border>
-                        
+
                         <Label Content="Правая колонка"
-                               Style="{DynamicResource LabelUsStyleVHCenter}"
-                               Margin="0 4 0 0"/>
+                               FontSize="16"
+                               Style="{DynamicResource LabelUsStyleVHCenter}"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -186,7 +187,7 @@
 
                                     <GridViewColumn Header="Дата аттестации"
                                                     Width="Auto"
-                                                    DisplayMemberBinding="{Binding DateCertified, StringFormat=dd.MM.yyyy}"/>
+                                                    DisplayMemberBinding="{Binding YearCertified}"/>
 
                                 </GridView.Columns>
                             </GridView>
@@ -310,6 +311,12 @@
                                             <MenuItem Header="цифры, затем Я-А" Command="{Binding WorkerSortDownGroupSpeciality}"/>
                                         </MenuItem>
 
+                                        <MenuItem Header="По дате аттестации" 
+                                                  Foreground="Black">
+                                            <MenuItem Header="Сверху вниз" Command="{Binding WorkerSortUpDateCertified}"/>
+                                            <MenuItem Header="Снизу вверх" Command="{Binding WorkerSortDownDateCertified}"/>
+                                        </MenuItem>
+
                                         <MenuItem Header="По типу сертификации"
                                                   Foreground="Black">
                                             <MenuItem Header="Сначала сертифицированные" Command="{Binding WorkerSortUpName}"/>
@@ -426,7 +433,7 @@
                                             
                                             <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
                                                        FontSize="18"
-                                                       Text="Дата сертификации (д.м.г)"
+                                                       Text="Дата сертификации"
                                                        Margin="0,6,0,0"/>
                                             <TextBox Text="{Binding WorkersDateCertifiedFilterString, UpdateSourceTrigger=PropertyChanged}"
                                                      Style="{StaticResource SearchWorkerTextBox}"
@@ -553,7 +560,7 @@
                                                        FontSize="18"
                                                        Text="Дата сертификации"
                                                        Margin="0 6 0 0"/>
-                                            <TextBox Text="{Binding SelectedWorker.DateCertified, StringFormat=dd.MM.yyyy}"
+                                            <TextBox Text="{Binding SelectedWorker.YearCertified}"
                                                      Style="{StaticResource WorkerValueTextBox}"
                                                      Margin="0 6 0 0"
                                                      IsReadOnly="True"

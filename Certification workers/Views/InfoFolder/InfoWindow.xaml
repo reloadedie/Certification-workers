@@ -5,13 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Certification_workers.Views"
         mc:Ignorable="d"
-        Background="{x:Null}"
         Title="" 
         WindowStartupLocation="CenterScreen"
-        MinHeight="800" MinWidth="900"
-        Height="800" Width="960">
-    <Border CornerRadius="20" 
-            Style="{DynamicResource InfoWindowBorderTheme}">
+        MinHeight="700" MinWidth="900"
+        Height="700" Width="960">
+    <Border Style="{DynamicResource InfoWindowBorderTheme}" Background="#FF1A4A84">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
@@ -51,26 +49,18 @@
                 </ComboBox>
             </StackPanel>
 
-            <Grid Grid.Row="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="1"
-                        BorderThickness="10"
-                        CornerRadius="25"
-                        Background="#FF3B5168">
-                    <Border BorderThickness="20">
-
-                        <TextBlock Text="{Binding HelpedText}"
-                                   Style="{DynamicResource TextBlockUsStyle}"
-                                   TextWrapping="Wrap"
-                                   FontSize="30"
-                                   />
-                    </Border>
+            <Border Grid.Row="2"
+                    BorderThickness="10"
+                    CornerRadius="25"
+                    Background="#FF3B5168"
+                    Margin="0,10,0,0">
+                <Border BorderThickness="20"> 
+                    <TextBlock Text="{Binding HelpedText}"
+                               Style="{DynamicResource TextBlockUsStyle}"
+                               TextWrapping="Wrap"
+                               FontSize="30"/>
                 </Border>
-            </Grid>
+            </Border>
         </Grid>
     </Border>
 </Window>

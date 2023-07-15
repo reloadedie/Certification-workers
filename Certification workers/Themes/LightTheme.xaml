@@ -59,7 +59,7 @@
 
     <!--InfoWindow-->
     <Style TargetType="{x:Type Border}" x:Key="InfoWindowBorderTheme">
-        <Setter Property="Background" Value="#FF2097A6"/>
+        <Setter Property="Background" Value="#FF1A4A84"/>
     </Style>
     <!--InfoWindow-->
 

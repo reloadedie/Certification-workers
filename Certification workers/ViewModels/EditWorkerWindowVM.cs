@@ -19,6 +19,7 @@ namespace Certification_workers.ViewModels
     public class EditWorkerWindowVM : BaseNotify
     {
         CertificationWorkersContext db = new CertificationWorkersContext();
+
         public ObservableCollection<Worker> Workers { get; set; }
 
         private Worker selectedWorker;
@@ -37,24 +38,13 @@ namespace Certification_workers.ViewModels
         public CoreCommand SaveWorker { get; set; }
         public CoreCommand DeleteWorker { get; set; }
 
-        private bool boolToggleButtonCertified;
-        public bool BoolToggleButtonCertified
+        private Visibility deleteWorkerVisibility = Visibility.Visible;
+        public Visibility DeleteWorkerVisibility
         {
-            get => boolToggleButtonCertified;
+            get => deleteWorkerVisibility;
             set
             {
-                boolToggleButtonCertified = value;
-                SignalChanged();
-            }
-        }
-
-        private Visibility dateCertifiedVisibility = Visibility.Collapsed;
-        public Visibility DateCertifiedVisibility
-        {
-            get => dateCertifiedVisibility;
-            set
-            {
-                dateCertifiedVisibility = value;
+                deleteWorkerVisibility = value;
                 SignalChanged();
             }
         }
@@ -67,7 +57,7 @@ namespace Certification_workers.ViewModels
                 {
                     IdTypeCertified = 2
                 };
-                SelectedWorker = worker;
+                DeleteWorkerVisibility = Visibility.Collapsed;
             }
             SelectedWorker = worker;
 

@@ -32,7 +32,7 @@
                 <ComboBox Width="570" 
                           SelectedItem="{Binding SelectedTag}"
                           FontSize="26"
-                          Margin="5 20 5 0">
+                          Margin="5,20,5,0">
                     <ComboBox.Items>
                         <ComboBoxItem Content="Что это за программа? Что она делает?" Tag="1"/>
                         <ComboBoxItem Content="Возможности программы?" Tag="2"/>
@@ -50,10 +50,15 @@
             </StackPanel>
 
             <Border Grid.Row="2"
-                    BorderThickness="10"
-                    CornerRadius="25"
-                    Background="#FF3B5168"
+                    BorderThickness="30"
+                    CornerRadius="35"
+                    Background="#FF497495"
                     Margin="0,10,0,0">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2"
+                                      BlurRadius="10"
+                                       />
+                </Border.Effect>
                 <Border BorderThickness="20"> 
                     <TextBlock Text="{Binding HelpedText}"
                                Style="{DynamicResource TextBlockUsStyle}"

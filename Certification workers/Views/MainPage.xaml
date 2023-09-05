@@ -21,7 +21,7 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
                    FontSize="46"
-                   Margin="0 30 0 0"/>
+                   Margin="0,30,0,0"/>
 
             <StackPanel Grid.Row="1">
                 <Label Content="Аттестация медицинских работников"

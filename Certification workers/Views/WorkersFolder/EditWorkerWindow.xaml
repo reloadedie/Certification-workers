@@ -249,7 +249,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Content="Сертифицирован"
+                                            <Label Content="Аккредитован"
                                                    Grid.Column="0" Grid.Row="1"
                                                    VerticalAlignment="Center"
                                                    FontSize="24" FontWeight="Medium"

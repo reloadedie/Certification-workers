@@ -6,6 +6,7 @@
     <RootNamespace>Certification_workers</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +31,10 @@
     <None Remove="Resources\Icons\WorkersPage\PersonRemove.png" />
     <None Remove="Resources\Icons\WorkersPage\Save.png" />
     <None Remove="Resources\InfoScreens\Test1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>

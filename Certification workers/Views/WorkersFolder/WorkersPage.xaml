@@ -168,6 +168,10 @@
                                                     Width="Auto"
                                                     DisplayMemberBinding="{Binding GroupSpeciality}"/>
 
+                                    <GridViewColumn Header="Должность"
+                                                    Width="Auto"
+                                                    DisplayMemberBinding="{Binding WorkerPosition}"/>
+                                    
                                     <GridViewColumn Header="Почта"
                                                     Width="Auto"
                                                     DisplayMemberBinding="{Binding Email}"/>    

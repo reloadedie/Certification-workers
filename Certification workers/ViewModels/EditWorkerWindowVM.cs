@@ -105,7 +105,8 @@ namespace Certification_workers.ViewModels
                        SelectedWorker.PhoneNumber == null |
                        SelectedWorker.OrganizationName == null |
                        SelectedWorker.Category == null |
-                       SelectedWorker.GroupSpeciality == null)
+                       SelectedWorker.GroupSpeciality == null |
+                       SelectedWorker.WorkerPositionName == null)
                     {
                         MessageBox.Show("Вы не заполнили обязательные поля");
                         return;

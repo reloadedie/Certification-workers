@@ -238,6 +238,20 @@
                                     </Border>
                                 </StackPanel>
 
+                                <Border Style="{DynamicResource EditWorkerBorderProperty}"
+                                        Margin="10,10,10,0"
+                                        HorizontalAlignment="Left">
+                                    <StackPanel Margin="5,5,5,5">
+                                        <TextBox Text="{Binding SelectedWorker.WorkerPositionName}"
+                                                     FontSize="24"
+                                                     Margin="0,5,0,5"/>
+                                        <TextBlock Text="Должность"
+                                                       Style="{DynamicResource TextBlockUsStyle}"
+                                                       FontSize="20"
+                                                       Margin="5,0,0,0"/>
+                                    </StackPanel>
+                                </Border>
+
                                 <StackPanel Orientation="Horizontal"
                                             Margin="10,10,0,10">
                                     <Border Width="360"

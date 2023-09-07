@@ -170,7 +170,7 @@
 
                                     <GridViewColumn Header="Должность"
                                                     Width="Auto"
-                                                    DisplayMemberBinding="{Binding WorkerPosition}"/>
+                                                    DisplayMemberBinding="{Binding WorkerPositionName}"/>
                                     
                                     <GridViewColumn Header="Почта"
                                                     Width="Auto"
@@ -525,6 +525,16 @@
                                                        Text="Специальность"
                                                        Margin="0 6 0 0"/>
                                             <TextBox Text="{Binding SelectedWorker.GroupSpeciality}"
+                                                     Style="{StaticResource WorkerValueTextBox}"
+                                                     Margin="0 6 0 0"
+                                                     IsReadOnly="True"
+                                                     Foreground="Black"/>
+
+                                            <TextBlock Style="{DynamicResource TextBlockUsStyleVHCenter}"
+                                                       FontSize="18"
+                                                       Text="Должность"
+                                                       Margin="0 6 0 0"/>
+                                            <TextBox Text="{Binding SelectedWorker.WorkerPositionName}"
                                                      Style="{StaticResource WorkerValueTextBox}"
                                                      Margin="0 6 0 0"
                                                      IsReadOnly="True"

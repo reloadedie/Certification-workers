@@ -83,6 +83,10 @@ namespace Certification_workers.LocalDB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.WorkerPositionName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.YearCertified)
                     .HasMaxLength(50)
                     .IsUnicode(false);

@@ -18,6 +18,7 @@ namespace Certification_workers.LocalDB
         public string? Description { get; set; }
         public byte[]? WorkerPhoto { get; set; }
         public int IdTypeCertified { get; set; }
+        public string WorkerPositionName { get; set; } = null!;
 
         public virtual TypeCertified IdTypeCertifiedNavigation { get; set; } = null!;
     }

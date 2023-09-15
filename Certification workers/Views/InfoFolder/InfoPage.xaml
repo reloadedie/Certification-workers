@@ -9,6 +9,12 @@
       Title="InfoPage">
 
     <Border Style="{DynamicResource InfoPageBorderTheme}">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="0.5"
+                              ShadowDepth="1"
+                              Color="Gray"
+                              />
+        </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
